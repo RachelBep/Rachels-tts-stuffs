@@ -1,0 +1,77 @@
+
+function onLoad(saved_data)
+  val = 0
+  if saved_data ~= "" then
+      local loaded_data = JSON.decode(saved_data)
+      val = loaded_data.val
+  end
+
+  params = {
+      click_function = "click",
+      function_owner = self,
+      label          = val,
+      position       = {-.47, .4, .21},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 3900,
+      height         = 1600,
+      font_size      = 1600000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "",
+  }
+  self.createButton(params)
+  params = {
+      click_function = "poweras",
+      function_owner = self,
+      label          = "^1.5",
+      position       = {-.67, .4, -.07},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 2000,
+      height         = 1000,
+      font_size      = 1600000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "",
+  }
+  self.createButton(params)
+end
+
+function click(_obj, _color, alt_click)
+    mod = alt_click and -1 or 1
+    new_value = val + mod
+    if val ~= new_value then
+        val = new_value
+        updateVal()
+        updateSave()
+    end
+end
+
+function poweras(_obj, _color, alt_click)
+    if alt_click then
+        new_value = val ^ (1/1.5)
+    else
+      new_value = val ^ 1.5
+    end
+    if val ~= new_value then
+        val = new_value
+        updateVal()
+        updateSave()
+    end
+end
+
+function updateSave()
+  local state = {
+      val = val
+  }
+    saved_data = JSON.encode(state)
+    self.script_state = saved_data
+end
+
+function updateVal()
+    self.editButton({
+        index = 0,
+        label = tostring(math.floor(val*100)/100)
+        })
+end

@@ -1,0 +1,84 @@
+<Panel width="2000" height="2000" position="0 0 -21" rotation="180 180" scale="0.1 0.1 0.1">
+<Button onClick="open" color="rgba(1,1,1,0)" width="800" height="800" hideAnimation="Shrink" id="power"><Image image="https://steamusercontent-a.akamaihd.net/ugc/23186198854810421/305BD7E70B6758122860A5C2DA7D2F0EC6B5AA7D/"></Image></Button>
+</Panel>
+
+
+<Panel width="2000" height="2000" position="0 0 -21" rotation="180 180" scale="0.1 0.1 0.1" id="screen" active="false">
+<Image image="https://steamusercontent-a.akamaihd.net/ugc/23186198854869211/FEB5EFB1D4199E7ABE4760869B4A48A052628D7C/" ></Image>
+<Text text="Error user not found" alignment="MiddleLeft" fontsize="120" offsetXY="30 770" color="#FFFFFF" id="nameandcash"></Text>
+
+<Panel color="#77777700" width="680" height="1600" offsetXY = "-640 -150">
+    <VerticalLayout childForceExpandWidth="false" childForceExpandHeight="false" spacing="25" childAlignment = "MiddleCenter" padding="5 5 25 25">
+
+<Panel color="#1d275c33"  height="300"  id="normalchal1" padding="20 20 20 20">
+  <VerticalLayout childForceExpandWidth="false">
+  <Text text="Beat a challange on normal or higher" alignment="UpperLeft" resizeTextForBestFit="true" color="#FFFFFF" fontsize="40" id="chal1_name"></Text>
+  <Text text="Reward: 400$" alignment="UpperLeft" color="#FFFFFF" resizeTextForBestFit="true" fontsize="35" id="chal1_reward"></Text>
+  <Button height="100" width="300" minWidth="300" minHeight="50" color="#5161bd"><Text text="Complete" color="#FFFFFF" resizeTextForBestFit="true" fontsize="55"></Text></Button>
+  </VerticalLayout>
+</Panel>
+
+<Panel color="#1d275c33"  height="300"  id="normalchal2" padding="20 20 20 20">
+  <VerticalLayout childForceExpandWidth="false">
+  <Text text="Gain a bonus soul" alignment="UpperLeft" resizeTextForBestFit="true" color="#FFFFFF" fontsize="40" id="chal2_name"></Text>
+  <Text text="Reward: 320$" alignment="UpperLeft" color="#FFFFFF" resizeTextForBestFit="true" fontsize="35" id="chal2_reward"></Text>
+  <Button height="100" width="300" minWidth="300" minHeight="50" color="#5161bd"><Text text="Complete" color="#FFFFFF" resizeTextForBestFit="true" fontsize="55"></Text></Button>
+  </VerticalLayout>
+</Panel>
+
+<Panel color="#1d275c33"  height="300"  id="normalchal3" padding="20 20 20 20">
+  <VerticalLayout childForceExpandWidth="false">
+  <Text text="Play a match of Sexpansion" alignment="UpperLeft" resizeTextForBestFit="true" color="#FFFFFF" fontsize="40" id="chal3_name"></Text>
+  <Text text="Reward: 230$" alignment="UpperLeft" color="#FFFFFF" resizeTextForBestFit="true" fontsize="35" id="chal3_reward"></Text>
+  <Button height="100" width="300" minWidth="300" minHeight="50" color="#5161bd"><Text text="Complete" color="#FFFFFF" resizeTextForBestFit="true" fontsize="55"></Text></Button>
+  </VerticalLayout>
+</Panel>
+
+<Panel color="#46116133"  height="300"  id="realchal1" padding="20 20 20 20">
+  <VerticalLayout childForceExpandWidth="false">
+  <Text text="Make a custom card with the theme 'Ice' and post it to the reddit or discord" alignment="UpperLeft" resizeTextForBestFit="true" color="#FFFFFF" fontsize="40" id="chal4_name"></Text>
+  <Text text="Reward: 750$" alignment="UpperLeft" color="#FFFFFF" resizeTextForBestFit="true" fontsize="35" id="chal4_reward"></Text>
+  <Button height="100" width="300" minWidth="300" minHeight="50" color="#5161bd"><Text text="Complete" color="#FFFFFF" resizeTextForBestFit="true" fontsize="55"></Text></Button>
+  </VerticalLayout>
+</Panel>
+
+<Panel color="#46116133"  height="300"  id="realchal2" padding="20 20 20 20">
+  <VerticalLayout childForceExpandWidth="false">
+  <Text text="tell a friend you appreciate them" alignment="UpperLeft" resizeTextForBestFit="true" color="#FFFFFF" fontsize="40" id="chal5_name"></Text>
+  <Text text="Reward: 666$" alignment="UpperLeft" color="#FFFFFF" resizeTextForBestFit="true" fontsize="35" id="chal5_reward"></Text>
+  <Button height="100" width="300" minWidth="300" minHeight="50" color="#5161bd"><Text text="Complete" color="#FFFFFF" resizeTextForBestFit="true" fontsize="55"></Text></Button>
+  </VerticalLayout>
+</Panel>
+
+
+</VerticalLayout>
+</Panel>
+
+
+<Panel color="#77777700" width="1220" height="1650" offsetXY = "350 -150">
+<GridLayout cellSize="590 520" spacing = "30 30" >
+
+<Panel color="#7F006530">
+  <Image image="https://steamusercontent-a.akamaihd.net/ugc/23186929148451451/391764EF5B7BBCCEE89E592651625DE27C34AD4A/" width = "512" height="674" scale=".5 .5 .5"
+    offsetXY = "0 80"> </Image>
+    <Text text="Chaos Collection pack: 500$" alignment="Middle" resizeTextForBestFit="true" color="#FFFFFF" offsetXY = "0 -120" fontsize="40"></Text>
+    <Button height="100" width="250" minWidth="300" minHeight="50" color="#610082" offsetXY = "0 -200"><Text text="Buy" color="#FFFFFF" resizeTextForBestFit="true" fontsize="80"></Text></Button>
+</Panel>
+<Panel color="#858736FF" >
+</Panel>
+<Panel color="#858736FF" >
+</Panel>
+<Panel color="#858736FF" >
+</Panel>
+<Panel color="#858736FF" >
+</Panel>
+<Panel color="#858736FF" >
+</Panel>
+
+
+</GridLayout>
+</Panel>
+
+
+
+</Panel>

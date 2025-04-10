@@ -1,0 +1,45 @@
+function onObjectEnterZone(zone, enter_object)
+  if enter_object.type == "Card" and zone.type == "Hand" then
+      enter_object.addContextMenuItem("Reveal Secrets", secrets, false)
+      enter_object.addTag("cainHand")
+  end
+
+end
+function onObjectHover(player_color, hover_object)
+  if hover_object ~= nil then
+    if hover_object.hasTag("cainHand") then
+      hover_object.addContextMenuItem("Reveal Secrets", secrets, false)
+    end
+  end
+
+end
+
+function secrets(color, position, object)
+  if not object.hasTag("cainSecrets") then
+    object.addTag("cainSecrets")
+    object.addDecal({
+          url = images[math.random(#images)],
+          name = "pepis",
+          position = {0, .45, 0},
+          rotation = {90, 180, 0},
+          scale = {2.15, 3.06, 20}
+        })
+  end
+
+end
+
+images = {
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/1.png", --1
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/10.png", --10
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/10.png", --10
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/10.png", --10
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/10.png", --10
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/2.png", --2
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/3.png", --3
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/4.png", --4
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/5.png", --5
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/6.png", --6
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/7.png", --7
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/8.png", --8
+  "https://file.garden/Zc4Z0v0NHTb1qSJ9/overlays/9.png", --9
+}

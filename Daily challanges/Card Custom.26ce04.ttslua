@@ -1,0 +1,141 @@
+math.randomseed(tonumber(os.date("%Y%m%d")))
+
+Title = {
+  {"Beggar", "Monster rewards are halved, rounded up."},
+  {"Bigbad", "Bosses have +1 HP and +1 DMG if the active player controls 3 or more souls."},
+  {"Champion", "Players have +1 HP."},
+  {"Collector", "Whenever a monster enters play, roll- on a 1 or 2, that monster becomes Shiny. Shiny monsters have +1 treasure added to their rewards."},
+  {"Demonlord", "Bosses have +X HP, where X is the number of souls the active player controls minus the number of souls controlled by the player with the fewest souls."},
+  {"King", "Players start with +10¢."},
+  {"Looter", "Players loot +1 on their loot step."},
+  {"Martyr", "Whenever a player has more than 5 non-eternal items, they must destroy items they control until they have 5 or fewer non-eternal items."},
+  {"Mercenary", "As the game starts, expand monster slots by 2."},
+  {"Metalworker", "As the game starts, reveal the top card of the treasure deck. Each player gains a copy of it, and the copies become eternal. (If playing physically, keep the item in the middle of the table for reference, and use other cards to represent each player's copy."},
+  {"Paladin", "All damage players take is reduced by 1, to a minimum of 1."},
+  {"Shopper", "As the game starts, expand shop slots by 2."},
+  {"Underdog", "Players do not heal during the heal step unless they are dead. At the start of your turn, heal to full HP."},
+  {"Revenant", "Players do not pay the death penalty."},
+  {"Voido", "When a non-boss monster dies, the active player gains it as a soul with a value of 0.5. Players require 1 additional soul to win."},
+}
+
+
+
+
+
+
+Condition ={
+{"Blistering", "Whenever a player takes damage"},
+{"Chained", "Whenever a player rolls the same result twice in a row on a turn"},
+{"Costly", "Whenever a player spends ¢"},
+{"Dominated", "Whenever a player ends their turn while controlling or being tied for the most souls"},
+{"Instant", "Whenever a player starts their turn"},
+{"Minimal", "Whenever a player ends their turn with 1 or fewer cards in their hand"},
+{"Murderous", "Whenever a player kills a monster"},
+{"Optional", "Whenever a player resolves an event on their turn"},
+{"Perpetual", "WWhenever a player dies"},
+{"Superstitious ", "Whenever a player rolls a " .. math.random(1,6)},
+{"Victorious ", "Whenever a player gains a soul"},
+{"Professional ", "Whenever a player activates their character card"},{"Blistering", "Whenever a player takes damage"},
+{"Chained", "Whenever a player rolls the same result twice in a row on a turn"},
+{"Costly", "Whenever a player spends ¢"},
+{"Dominated", "Whenever a player ends their turn while controlling or being tied for the most souls"},
+{"Instant", "Whenever a player starts their turn"},
+{"Minimal", "Whenever a player ends their turn with 1 or fewer cards in their hand"},
+{"Murderous", "Whenever a player kills a monster"},
+{"Optional", "Whenever a player resolves an event on their turn"},
+{"Perpetual", "WWhenever a player dies"},
+{"Superstitious ", "Whenever a player rolls a " .. math.random(1,6)},
+{"Victorious ", "Whenever a player gains a soul"},
+{"Professional ", "Whenever a player activates their character card"},
+{"Miserly ", "Whenever a player ends their turn while having or being tied for the most ¢"},
+{"Gluttonous ", "Whenever a player ends their turn while having or being tied for the most loot cards"},
+}
+
+
+prefmod = {
+{  "Answers" ,"they reveal the top X cards of a deck, then put them back in a random order"},
+{"Plunder" ,"they loot X"},
+{"Riches" ,"they gain X¢"},
+{"Growth" ,"they gain +X HP till end of turn"},
+{"Loss" ,"they discard X loot cards"},
+{"Quakes" ,"they discard up to X shop items or a monsters not being attacked"},
+{"Taxation" ,"they lose X¢"},
+{"Power" ,"they have +X to their next roll"},
+{"Pity" ,"they have -X to their next roll"},
+{"Charge" ,"they may recharge up to X items"},
+{"Cycling" ,"they loot X, then discard X loot cards"},
+{"Influence" ,"they look at the top X cards of a deck, then put them back in any order"},
+}
+
+noprefmod = {
+{  "Answers" ,"they reveal the top 2 cards of a deck, then put them back in a random order"},
+{"Evil" ,"they put the top card of the monster deck in a slot not being attacked"},
+{"Pain" ,"they take 1 damage if they are alive"},
+{"Plunder" ,"they loot 1"},
+{"Riches" ,"they gain 3¢"},
+{"Growth" ,"they gain +1 HP till end of turn"},
+{"Loss" ,"they discard 1 loot card"},
+{"Quakes" ,"they discard a shop item or a monster not being attacked"},
+{"Taxation" ,"they lose 3¢"},
+{"Treason" ,"monsters gain +1 DMG till end of turn"},
+{"Power" ,"they have +1 to their next roll"},
+{"Pity" ,"they have -1 to their next roll"},
+{"Change" ,"they reroll an item they control"},
+{"Legends" ,"they gain +1 treasure"},
+{"Commerce" ,"they put the top card of the treasure deck in a shop slot"},
+{"Charge" ,"they may recharge 1 item"},
+{"Learning" ,"they may play an additional loot card this turn"},
+{"Cycling" ,"they loot 1, then discard a loot card"},
+{"Wrath" ,"they deal 1 damage to a monster"},
+{"Influence" ,"they look at the top 2 cards of a deck, then put them back in any order"},
+{"Creation" ,"they may change a number in the effect text of a card in play or a loot being played by 1 till end of turn"},
+}
+
+Prefix = {
+{  "Bio" ,"that player's current HP"},
+{"Buncha" ,"the number of non-eternal items that player controls"},
+{"Spell" ,"half the number of cards they have in their hand, rounded down"},
+{"Mal" ,"the number of monsters in play"},
+{"Luster" ,"a third of that player's current cent total, rounded down"},
+{"Counter" ,"the amount of damage that player has dealt this turn"},
+{"Psuedo" ,"the result of the last roll that resolved"},
+{"Omni" ,"the number of souls they control"},
+{"Null" ,"4 minus the number of souls they control"},
+{"Wise" ,"the number of charged character cards in play"},
+{"Super" ,"the number of times this has triggered this turn (starting at 1)"},
+}
+chosenTitle =Title[math.random(#Title)]
+chosenCondition = Condition[math.random(#Condition)]
+chosenCondition2 = Condition[math.random(#Condition)]
+chosennoprefmod = noprefmod[math.random(#noprefmod)]
+chosennoprefmod2 = noprefmod[math.random(#noprefmod)]
+chosenprefmod = prefmod[math.random(#prefmod)]
+chosenprefix = Prefix[math.random(#Prefix)]
+ChallangeName = {
+  chosenTitle[1] .. "'s Trial of " .. chosenCondition[1] .. " " .. chosennoprefmod[1], --NoPrefTrial
+  chosenTitle[1].. "'s Trial of " .. chosenCondition[1] .. " " .. chosenprefix[1].. " " .. chosenprefmod[1],
+  chosenTitle[1] .. "'s Trial of " .. chosenCondition[1] .. " " .. chosennoprefmod[1], --NoPrefTrial
+  chosenTitle[1].. "'s Trial of " .. chosenCondition[1] .. " " .. chosenprefix[1].. " " .. chosenprefmod[1],
+  chosenTitle[1] .. "'s Trial of " .. chosenCondition[1] .. " " .. chosennoprefmod[1], --NoPrefTrial
+  chosenTitle[1].. "'s Trial of " .. chosenCondition[1] .. " " .. chosenprefix[1].. " " .. chosenprefmod[1],
+  chosenTitle[1] .. "'s Trial of " .. chosenCondition[1] .. " " .. chosennoprefmod[1], --NoPrefTrial
+  chosenTitle[1].. "'s Trial of " .. chosenCondition[1] .. " " .. chosenprefix[1].. " " .. chosenprefmod[1],
+  chosenTitle[1] .. "'s Trial of " .. chosenCondition[1] .. " " .. chosenprefix[1].. " " .. chosenprefmod[1] .. " and " .. chosenCondition2[1] .. " " .. chosennoprefmod2[1],
+}
+
+ChallangeEffect = {
+  chosenTitle[2] .. "\n" .. chosenCondition[2] .. ", " .. chosennoprefmod[2],
+  chosenTitle[2] .. "\n" .. chosenCondition[2] .. ", " .. chosenprefmod[2] .. ", where X is " .. chosenprefix[2],
+  chosenTitle[2] .. "\n" .. chosenCondition[2] .. ", " .. chosenprefmod[2] .. ", where X is " .. chosenprefix[2] .. ". \n" .. chosenCondition2[2] .. ", " .. chosennoprefmod2[2],
+}
+
+function onLoad(save_state)
+  Wait.frames(
+    function()
+
+        self.UI.setAttribute("namebox", "text", ChallangeName[math.random(#ChallangeName)] )
+          self.UI.setAttribute("ability", "text", ChallangeEffect[math.random(#ChallangeEffect)] )
+    end,
+    60
+)
+end

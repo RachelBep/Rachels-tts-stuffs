@@ -1,0 +1,134 @@
+webURL=""
+tabletData = {
+  steamID= 404 ,
+  money=1000,
+  dailies = {
+    [tonumber(os.date("%Y%m%d"))] = {false, false, false, false, false}, -- by default you should have none of todays dailies done
+  }
+}
+
+blueChallanges = {
+  {"Beat a challange on normal or higher", 210},
+  {"Beat a challange on Hard or higher", 330},
+  {"Beat a challange on Ultra Hard", 460},
+  {"Gain a Bonus Soul", 80},
+  {"Die 10 times", 140},
+  {"Win a game", 170},
+  {"Have a full hand", 245},
+  {"Discard 5 rooms", 105},
+  {"Kill another player", 65},
+  {"Recharge another players item", 55},
+  {"Give a player 10c", 75},
+  {"Play 2 pills", 130},
+  {"Kill another player", 65},
+  {"Play 6 trinkets", 125},
+  {"Kill each other player atleast once in a 3+ player match", 320},
+  {"Play a match of Ark", 250},
+  {"Play a match of Lost Cards Finale", 200},
+  {"Play a match of The Vault", 250},
+  {"Play a match of Sexpansion", 250},
+  {"Play a match of 12 Days of shitsmas", 300},
+  {"Play a match of Chaos Collection", 250},
+  {"Play a match of Mitpack", 250},
+  {"Play a match of Warps Plus", 250},
+  {"Play a match of PokePack", 250},
+  {"Play a match of Bleedzone", 200},
+  {"Play a match of Glitched Crown", 200},
+  {"Play a match of Strange Friends", 200},
+  {"Play a match of Into the Constant", 250},
+  {"Play a match of Zero's Booster Pack", 250},
+  {"Play a match of Sewer V2", 250},
+  {"Play a match of Dungeons and Degenerate Gamplers Expansion", 250},
+  {"Play a match of Four Souls: Covenant", 250},
+}
+purpleChallanges = {
+    {"Tell a friend you appreciate them", 400},
+    {"Upvota 5 mods on the steam workshop", 360},
+    {"Play another tts game", 250},
+    {"Draw some fanart of a character", 400},
+    {"Learn a new programming concept", 400},
+    {"Eat a fruit", 200},
+    {"Go on a walk", 320},
+    {"Make a card based on scp and post it to reddit or discord", 500},
+    {"Make a card based on a platformer and post it to reddit or discord", 500},
+    {"Make a card based on another card game and post it to reddit or discord", 500},
+    {"Make a card based on the theme of 'evil' and post it to reddit or discord", 500},
+    {"Make a card based on the theme of 'charity' and post it to reddit or discord", 500},
+    {"Make a card based on the theme of 'sin' and post it to reddit or discord", 500},
+}
+challange1 = {"Error", 0}
+challange2 = {"Error", 0}
+challange3 = {"Error", 0}
+challange4 = {"Error", 0}
+challange5 = {"Error", 0}
+
+
+function onLoad(save_state)
+
+
+
+end
+
+function open(person)
+    tabletData.steamID = person.getSteamID()
+
+  local allData={}
+    WebRequest.get(webURL, function(request)
+      if request.is_error then
+          log(request.error)
+      else
+          allData = JSON.decode(request.text)
+          for key,value in allData do --checks the list of all users data for my own
+                if value.steamID == tabletData.steamID then
+                  tabletData = value
+                  if tabletData.dailies[tonumber(os.date("%Y%m%d"))] == nil then --when it gets your data it checks if theres data on todays dailies and makes some of there isnt
+                    dailies[tonumber(os.date("%Y%m%d"))] = {false, false, false, false, false}
+                  end
+                end
+          end
+          self.UI.hide("power")
+          self.UI.setAttribute("nameandcash", "text", person.steam_name .. ": ".. tabletData.money .."$")
+          math.randomseed(tonumber(os.date("%Y%m%d")) * tabletData.steamID)
+          challange1 = blueChallanges[math.random(#blueChallanges)]
+          challange2 = blueChallanges[math.random(#blueChallanges)]
+          challange3 = blueChallanges[math.random(#blueChallanges)]
+          challange4 = purpleChallanges[math.random(#purpleChallanges)]
+          challange5 = purpleChallanges[math.random(#purpleChallanges)]
+          updateChallange(1, challange1)
+          updateChallange(2, challange2)
+          updateChallange(3, challange3)
+          updateChallange(4, challange4)
+          updateChallange(5, challange5)
+
+      end
+  end)
+
+
+end
+function updateChallange(number, challange)
+  if number >=1 and number <= 5 then
+    self.UI.setValue("chal"..number.."_name", challange[1])
+    self.UI.setValue("chal"..number.."_reward", "Reward: "..challange[2].."$")
+
+  end
+
+end
+
+function onlineSave()
+    local allData = {}
+    WebRequest.get(webURL, function(request)
+      if request.is_error then
+          log(request.error)
+      else
+          allData = JSON.decode(request.text)
+      end
+  end)
+
+  for key,value in allData do
+        if value.steamID == tabletData.steamID then
+          allData[key] = tabletData
+        end
+  end
+
+  -- todo WebRequest.post(webURL, allData, function)
+end

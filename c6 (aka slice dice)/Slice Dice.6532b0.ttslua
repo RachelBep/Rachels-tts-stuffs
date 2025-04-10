@@ -1,0 +1,286 @@
+function onLoad(save_state)
+  state = JSON.decode(save_state)
+  self.addContextMenuItem("Eject the top side", ejectTop)
+  self.addContextMenuItem("Enable Editing", addTop)
+  self.addContextMenuItem("Toggle petrify top", petTop)
+  defscale = {x=.55,y=.55,z=.55}
+  decalPositions = {
+    {0, 0, 0.34},
+    {0, 0.34, 0},
+    {-0.34, 0, 0},
+    {0.34, 0, 0},
+    {0, -0.34, 0},
+    {0, 0, -0.34},
+    {0, 0, 0.341},
+    {0, 0.341, 0},
+    {-0.341, 0, 0},
+    {0.341, 0, 0},
+    {0, -0.341, 0},
+    {0, 0, -0.341},
+  }
+  sideobjs = {
+    "no",
+    "no",
+    "no",
+    "no",
+    "no",
+    "no",
+  }
+  decalRotations = {
+    {180, 0, 0},
+    {90, 180, 180},
+    {0, 90, 90},
+    {180, 90, 90},
+    {270, 0, 180},
+    {0, 0, 0},
+  }
+  sideLinks = {
+    blank = "https://cdn.discordapp.com/attachments/1063817356066959491/1073857173219717170/blank.png",
+
+  }
+  open = false
+  sideDescriptions = {
+    blank = "blank",
+  }
+  sides = {
+    "blank",
+    "blank",
+    "blank",
+    "blank",
+    "blank",
+    "blank",
+  }
+  if state ~= nil then
+    sideLinks = state.sideLinks
+    sides = state.sides
+    petrified = state.petrified
+    sideobjs = state.sideobjs
+    sideDescriptions = state.sideDescriptions
+  end
+setTable()
+end
+
+petrified = {
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+}
+function onSave()
+  state = {
+    sides = sides,
+    petrified = petrified,
+    sideLinks = sideLinks,
+    sideobjs = sideobjs,
+    sideDescriptions = sideDescriptions,
+  }
+  return JSON.encode(state)
+end
+
+function debugBlank()
+  sides = {
+    "blank",
+    "blank",
+    "blank",
+    "blank",
+    "blank",
+    "blank",
+  }
+setTable()
+end
+function petTop()
+  if petrified[tonumber(self.getRotationValue())] == 1 then
+    petrified[tonumber(self.getRotationValue())] = 0
+  else
+    petrified[tonumber(self.getRotationValue())] = 1
+  end
+  setTable()
+end
+
+
+function setTable()
+  self.setDecals({
+          {
+              name     = "1",
+              url      = sideLinks[(sides[1])],
+              position = decalPositions[1],
+              rotation = decalRotations[1],
+              scale = defscale
+          },
+          {
+                    name     = "2",
+                    url      = sideLinks[(sides[2])],
+                    position = decalPositions[2],
+                    rotation = decalRotations[2],
+                    scale = defscale
+          },
+          {
+              name     = "3",
+              url      = sideLinks[(sides[3])],
+              position = decalPositions[3],
+              rotation = decalRotations[3],
+              scale = defscale
+          },
+          {
+                    name     = "4",
+                    url      = sideLinks[(sides[4])],
+                    position = decalPositions[4],
+                    rotation = decalRotations[4],
+                    scale = defscale
+          },
+          {
+              name     = "5",
+              url      = sideLinks[(sides[5])],
+              position = decalPositions[5],
+              rotation = decalRotations[5],
+              scale = defscale
+          },
+          {
+                    name     = "6",
+                    url      = sideLinks[(sides[6])],
+                    position = decalPositions[6],
+                    rotation = decalRotations[6],
+                    scale = defscale
+          },
+          {
+                    name     = "p1",
+                    url      = "https://cdn.discordapp.com/attachments/1063817356066959491/1096787370256367666/petrified.png",
+                    position = decalPositions[7],
+                    rotation = decalRotations[1],
+                    scale = {(defscale.x*petrified[1]), defscale.y, defscale.z}
+          },
+          {
+                    name     = "p2",
+                    url      = "https://cdn.discordapp.com/attachments/1063817356066959491/1096787370256367666/petrified.png",
+                    position = decalPositions[8],
+                    rotation = decalRotations[2],
+                    scale = {(defscale.x*petrified[2]), defscale.y, defscale.z}
+          },
+          {
+                    name     = "p3",
+                    url      = "https://cdn.discordapp.com/attachments/1063817356066959491/1096787370256367666/petrified.png",
+                    position = decalPositions[9],
+                    rotation = decalRotations[3],
+                    scale = {(defscale.x*petrified[3]), defscale.y, defscale.z}
+          },
+          {
+                    name     = "p4",
+                    url      = "https://cdn.discordapp.com/attachments/1063817356066959491/1096787370256367666/petrified.png",
+                    position = decalPositions[10],
+                    rotation = decalRotations[4],
+                    scale = {(defscale.x*petrified[4]), defscale.y, defscale.z}
+          },
+          {
+                    name     = "p5",
+                    url      = "https://cdn.discordapp.com/attachments/1063817356066959491/1096787370256367666/petrified.png",
+                    position = decalPositions[11],
+                    rotation = decalRotations[5],
+                    scale = {(defscale.x*petrified[5]), defscale.y, defscale.z}
+          },
+          {
+                    name     = "p6",
+                    url      = "https://cdn.discordapp.com/attachments/1063817356066959491/1096787370256367666/petrified.png",
+                    position = decalPositions[12],
+                    rotation = decalRotations[6],
+                    scale = {(defscale.x*petrified[6]), defscale.y, defscale.z}
+          },
+
+        })
+end
+
+
+function ejectTop()
+open = false
+if sideobjs[tonumber(self.getRotationValue())] ~= "no" then
+  powo = self.getPosition()
+  powo[2] = powo[2] + 2
+  spawnObjectData({
+    data = sideobjs[tonumber(self.getRotationValue())],
+    position = powo
+  })
+  sides[tonumber(self.getRotationValue())] = "blank"
+  sideobjs[tonumber(self.getRotationValue())] = "no"
+  setTable()
+end
+end
+
+
+function onRandomize(player_color)
+
+  Wait.condition(
+    function() -- Executed after our condition is met
+        if self.isDestroyed() then
+            print("Die was destroyed before it came to rest.")
+        else
+          if sideDescriptions[(sides[tonumber(self.getRotationValue())])] == nil then
+            dataBank()
+          end
+          if sideDescriptions[(sides[tonumber(self.getRotationValue())])] ~= nil then
+            print(sideDescriptions[(sides[tonumber(self.getRotationValue())])])
+          end
+        end
+    end,
+    function() -- Condition function
+        return self.isDestroyed() or self.resting
+    end
+)
+end
+
+
+function addTop(player_color, menu_position)
+open = true
+print("you can edit once")
+end
+
+
+
+
+function dataBank()
+  listOfShut = getObjects()
+  for i in ipairs(listOfShut) do
+    stuff = listOfShut[i]
+    if stuff.hasTag("C6bank") then
+    append = stuff.getTable("sides")
+    for k,v in pairs(append) do
+      sideDescriptions[k] = v
+
+    end
+
+    appendimg = stuff.getTable("imgs")
+    for k,v in pairs(appendimg) do
+      sideLinks[k] = v
+    end
+
+  end
+  end
+  setTable()
+end
+
+
+
+
+
+function setTop(id, obj)
+  if sideDescriptions[id] == nil then
+    dataBank()
+  end
+
+  if sides[tonumber(self.getRotationValue())] == "blank" then
+    sideobjs[tonumber(self.getRotationValue())] = obj.getData()
+    sides[tonumber(self.getRotationValue())] = id
+    setTable()
+    obj.destruct()
+  end--end for the blank check
+
+end
+getObjectFromGUID("6532b0")
+
+
+--[[function onCollisionEnter(collision_info)
+  hit_object = collision_info.collision_object
+  if hit_object.hasTag("SliceCard") and open then
+  setTop(hit_object.getVar("type"), hit_object)
+end
+end--]]

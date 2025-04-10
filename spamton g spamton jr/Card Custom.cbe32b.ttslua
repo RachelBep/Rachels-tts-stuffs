@@ -1,0 +1,67 @@
+function onLoad(save_state)
+  Turns.enable = true
+end
+
+
+paint = "White"
+function doAd()
+  adshown = true
+  log(Turns.turn_color)
+  chosenad = math.random(1, 6)
+  adimage = adimages[chosenad]
+
+  Global.UI.setXml(Global.UI.getXml().. "\n\n\n <!-- filler so the code doesnt cut anything valuable --> <Panel \n id=\"sexpansionad\" \n height=\"500\" \n width=\"600\" \n color=\"rgba(0,0,0,0)\" \n rectAlignment=\"Center\" \n offsetXY=\""..tostring(math.random(-550, 550)).." "..tostring(math.random(-300, 300)).."\" \n hideAnimation=\"FadeOut\" \n animationDuration=\"0.1 \" \nallowDragging= \"true \" \n visibility=\""..tostring(Turns.turn_color).."\" \n returnToOriginalPositionWhenReleased=\"false\" \n > \n <Image \n image=\""..adimage.."\" \n preserveAspect=\"true\" \n height=\"500\" \n width=\"600\" \n rectAlignment=\"Center\" \n > \n </Image> \n <Button \n onClick=\"".. selfGUID .."/closeAd\" \n height=\"40\" \n width=\"40\" \n color=\"rgba(0,0,0,0.7)\" \n text=\"X\" \n textColor=\"rgba(0,0,0,0.9)\" \n fontStyle=\"Bold\" \n fontSize=\"35\" \n rectAlignment=\"UpperRight\" \n > \n </Button> \n </Panel> \n <!-- filler so the code doesnt cut anything valuable -->")
+end
+selfGUID = tostring(self.getGUID())
+function closeAd()
+  adshown = false
+  log(Global.UI.getXml())
+   Global.UI.setXml(string.sub(Global.UI.getXml(),string.find(Global.UI.getXml(), "sexpansionad")-15 ,string.find(Global.UI.getXml(), "sexpansionad")+808 ))
+end
+tickcount = 0
+function onFixedUpdate()
+  tickcount = tickcount + 1
+  if tickcount == 629 and skipfirstad == true then
+    skipfirstad = false
+    tickcount = 0
+  end
+  if tickcount == 630 then
+      resolveAd()
+  end
+  if tickcount == 855 then
+    tickcount = 0
+    doAd()
+  end
+end
+
+function onObjectDestroy(dying_object)
+  if dying_object == self then
+    closeAd()
+  end
+end
+
+function resolveAd()
+  if adshown == true then
+    broadcastToAll(adeffects[chosenad])
+    closeAd()
+  end
+
+end
+skipfirstad= true
+adimages = {
+  "https://cdn.discordapp.com/attachments/663886567953137673/1140299693847482388/flip_all_rolls_on_the_stack.png",
+  "https://cdn.discordapp.com/attachments/663886567953137673/1140299694141095957/loot_1_discard_3_random.png",
+  "https://cdn.discordapp.com/attachments/663886567953137673/1140299694434680942/roll-_change_the_result_of_all_rolls_on_the_stack_that_would_have_a_higher_result_then_this_to_this_result.png",
+  "https://cdn.discordapp.com/attachments/663886567953137673/1140299694841532487/take_1_damage.png",
+  "https://cdn.discordapp.com/attachments/663886567953137673/1140299695181266964/you_cannot_play_loot_for_the_next_3_rolls_this_cannot_be_responded_to.png",
+  "https://cdn.discordapp.com/attachments/663886567953137673/1140299695533592697/you_may_add_or_subtract_1_from_your_next_non-attack_roll.png",
+}
+
+adeffects = {
+  "Flip all rolls on the stack.",
+  "Loot 1, then discard 3 random loot cards.",
+  "Roll- change the results of all rolls on the stack that would have a higher result then this to this result.",
+  "Take 1 damage",
+  "You cannot play loot fro the next 3 rolls. loot cards cannot be played while this is on the stack.",
+  "You may add or subtract 1 from your next non attack roll this turn."
+}

@@ -1,0 +1,186 @@
+numbers = {}
+
+function onLoad(save_state)
+
+  if save_state ~= "" then
+      local loaded_data = JSON.decode(save_state)
+      numbers = loaded_data.numbers
+  end
+  params = {
+      click_function = "avg",
+      function_owner = self,
+      label          = "0",
+      position       = {-.65, .4, -.35},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 1800,
+      height         = 900,
+      font_size      = 40000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "current average",
+  }
+  self.createButton(params)
+  params = {
+      click_function = "one",
+      function_owner = self,
+      label          = "1",
+      position       = {-.75, .4, -.15},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 900,
+      height         = 900,
+      font_size      = 40000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "rolled a 1",
+  }
+  self.createButton(params)
+  params = {
+      click_function = "two",
+      function_owner = self,
+      label          = "2",
+      position       = {-.55, .4, -.15},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 900,
+      height         = 900,
+      font_size      = 40000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "rolled a 2",
+  }
+  self.createButton(params)
+  params = {
+      click_function = "three",
+      function_owner = self,
+      label          = "3",
+      position       = {-.75, .4, .05},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 900,
+      height         = 900,
+      font_size      = 40000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "rolled a 3",
+  }
+  self.createButton(params)
+  params = {
+      click_function = "four",
+      function_owner = self,
+      label          = "4",
+      position       = {-.55, .4, .05},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 900,
+      height         = 900,
+      font_size      = 40000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "rolled a 4",
+  }
+  self.createButton(params)
+  params = {
+      click_function = "five",
+      function_owner = self,
+      label          = "5",
+      position       = {-.75, .4, .25},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 900,
+      height         = 900,
+      font_size      = 40000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "rolled a 5",
+  }
+  self.createButton(params)
+  params = {
+      click_function = "six",
+      function_owner = self,
+      label          = "6",
+      position       = {-.55, .4, .25},
+      rotation       = {0, 0, 0},
+      scale = {.1, 1, .1},
+      width          = 900,
+      height         = 900,
+      font_size      = 40000,
+      color          = {0.3, 0.3, 0.3},
+      font_color     = {1, 1, 1},
+      tooltip        = "rolled a 6",
+  }
+  self.createButton(params)
+end
+
+function one()
+  table.insert(numbers, 1)
+  local sum = 0
+  for i, o in pairs(numbers) do
+  sum = sum + o
+end
+
+self.editButton({index=0, label=tostring(math.floor(((sum/#numbers)*100))/100)})
+
+end
+function two()
+  table.insert(numbers, 2)
+  local sum = 0
+  for i, o in pairs(numbers) do
+  sum = sum + o
+end
+
+self.editButton({index=0, label=tostring(math.floor(((sum/#numbers)*100))/100)})
+
+end
+function three()
+  table.insert(numbers, 3)
+  local sum = 0
+  for i, o in pairs(numbers) do
+  sum = sum + o
+end
+
+self.editButton({index=0, label=tostring(math.floor(((sum/#numbers)*100))/100)})
+
+end
+function four()
+  table.insert(numbers, 4)
+  local sum = 0
+  for i, o in pairs(numbers) do
+  sum = sum + o
+end
+
+self.editButton({index=0, label=tostring(math.floor(((sum/#numbers)*100))/100)})
+
+end
+function five()
+  table.insert(numbers, 5)
+  local sum = 0
+  for i, o in pairs(numbers) do
+  sum = sum + o
+end
+
+self.editButton({index=0, label=tostring(math.floor(((sum/#numbers)*100))/100)})
+
+end
+function six()
+  table.insert(numbers, 6)
+  local sum = 0
+  for i, o in pairs(numbers) do
+  sum = sum + o
+end
+
+self.editButton({index=0, label=tostring(math.floor(((sum/#numbers)*100))/100)})
+
+end
+
+function avg()
+
+end
+
+function onSave()
+    local state = {
+        numbers = numbers
+    }
+    return JSON.encode(state)
+end

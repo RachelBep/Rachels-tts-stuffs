@@ -1,0 +1,133 @@
+--[[save = 0
+effects = {
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/1.png",
+    power=10
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/2.png",
+    power=17
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/3.png",
+    power=-25
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/4.png",
+    power=0
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/5.png",
+    power=-20
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/6.png",
+    power=10
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/7.png",
+    power=-15
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/8.png",
+    power=12
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/9.png",
+    power=13
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/10.png",
+    power=8
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/11.png",
+    power=13
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/12.png",
+    power=16
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/14.png",
+    power=26
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/15.png",
+    power=19
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/16.png",
+    power=0
+  },
+  {
+    url="https://file.garden/Zc4Z0v0NHTb1qSJ9/glitch/17.png",
+    power=12
+  },
+}
+function onLoad(save_state)
+  local state = JSON.decode(save_state)
+  if state ~= nil then
+    save = state.save
+  end
+  log(save)
+  if save == 1 then
+    save = 2
+    self.addDecal({
+      name = "test",
+      url = effects[math.random(#effects)].url,
+      position = {0, .3, 0},
+      rotation = {90, 180, 0},
+      scale = {2.15, 3.06, 20}
+    }) --centre
+    self.addDecal({
+      name = "test",
+      url = effects[math.random(#effects)].url,
+      position = {0, .3, .4},
+      rotation = {90, 180, 0},
+      scale = {2.15, 3.06, 20}
+    }) --bottom
+    self.addDecal({
+      name = "test",
+      url = effects[math.random(#effects)].url,
+      position = {0, .3, -.4},
+      rotation = {90, 180, 0},
+      scale = {2.15, 3.06, 20}
+    }) --top
+    for i=1 ,5,1 do
+      local x = math.random(-40,40)
+      local y = math.random(-40,40)
+      self.createButton({
+          click_function = "nilll",
+          function_owner = self,
+          position       = {0+(x/100), .3, -.5+(y/100)},
+          rotation       = {0, 0, 0},
+          width          = math.random(900, 6000)*(1-(math.abs(x)*0.01)),
+          height         = math.random(900, 6000)*(1-(math.abs(y)*0.01)),
+          font_size      = 340,
+          scale = {0.1, 0.1, 0.1},
+          color          = {math.random(),math.random(),math.random()},
+          font_color     = {1, 1, 1},
+      })
+    end
+  end
+end
+function onCollisionEnter(info)
+    if info.collision_object.name == "Infinite_Bag" then
+      log("string")
+      save = math.max(save, 1)
+    end
+end
+function onSave()
+  -- body...
+
+  local state = {
+    save = save
+  }
+  log("save" .. save)
+  return JSON.encode(state)
+end
+function nilll()
+
+end
+]]

@@ -1,0 +1,69 @@
+type = "room"
+
+--thanks yax
+function onLoad()
+    solution = 32735
+    uno = 0
+    dos = 0
+    time = 5
+end
+function onPlayerTurn(player, previous_player)
+    time = 5
+end
+
+function onChat(msg, sender)
+trunc = string.lower(msg)
+trunc = string.gsub(trunc, "%s", "")
+--trunc = string.gsub(trunc, "%p", "")
+    if not Quizzing then
+
+        if string.find(trunc, "quizme") then
+          uno = math.random(0,9)
+          dos = math.random(0,9)
+          if math.random(0,1) == 1 then
+            sign = "-"
+            solution = uno - dos
+          else
+            sign = "+"
+            solution = uno + dos
+          end
+          debug = 0.0001
+          Wait.frames(
+          function()
+            broadcastToAll(sender.color .. " please type the correct. you have " .. time .. " seconds")
+            broadcastToAll(tostring(uno .. sign .. dos .. "=" ))
+          end,
+          1
+          )
+
+            --Switch further chat messages to essay-taking mode,
+            --and instantiate all variables used for that.
+            Quizzing = true
+            student = sender.color
+
+            Wait.time(
+            function()
+              if Quizzing then
+              Quizzing = false
+              time = time - 0.5
+              broadcastToAll("Time is up, you may pay 3c to recharge this but its going to be harder. The correct answer was " .. solution)
+            end
+            end,
+            time
+            )
+        end
+    else
+        if sender.color == student then
+          if tonumber(msg) == solution then
+            broadcastToAll("Correct, loot 2 and discard a loot card.", Table)
+            Quizzing = false
+            time = time - 0.5
+          else
+            broadcastToAll("Wrong, you may pay 3c to recharge this but its going to be harder. The correct answer was " .. solution, Table)
+            Quizzing = false
+            time = time - 0.5
+          end
+        end
+        return false
+    end
+end

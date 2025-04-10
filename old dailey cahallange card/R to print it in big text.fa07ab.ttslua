@@ -1,0 +1,139 @@
+function onLoad(save_state)
+  local dataTitle = {click_function = "updateButtonLabels", function_owner = self, label = self.getName(),  position = {0, 0.3, -1.15}, scale = {0.28, 0.5, 0.5}, width = 0, height = 0, font_size = 125}
+  local dataDescription = {click_function = "updateButtonLabels", function_owner = self, label = self.getDescription(), position = {0, 0.4, 0}, scale = {0.28, 0.5, 0.5}, width = 0, height = 0, font_size = 100}
+  self.createButton(dataTitle)
+  self.createButton(dataDescription)
+end
+
+function updateButtonLabels()
+  self.clearButtons()
+  local dataTitle = {click_function = "updateButtonLabels", function_owner = self, label = self.getName(), position = {0, 0.38, -1.2}, scale = {0.28, 0.5, 0.5}, width = 0, height = 0, font_size = 125}
+  local dataDescription = {click_function = "updateButtonLabels", function_owner = self, label = self.getDescription(), position = {0, 0.4, 0}, scale = {0.28, 0.5, 0.5}, width = 0, height = 0, font_size = 100}
+  self.createButton(dataTitle)
+  self.createButton(dataDescription)
+end
+
+function onHover()
+  self.clearButtons()
+  local dataTitle = {click_function = "updateButtonLabels", function_owner = self, label = self.getName(), position = {0, 0.3, -1.15}, scale = {0.28, 0.5, 0.5}, width = 0, height = 0, font_size = 125}
+  local dataDescription = {click_function = "updateButtonLabels", function_owner = self, label = self.getDescription(), position = {0, 0.4, 0}, scale = {0.28, 0.5, 0.5}, width = 0, height = 0, font_size = 100}
+  self.createButton(dataTitle)
+  self.createButton(dataDescription)
+end
+
+function onLoad(save_state)
+  seed = string.gsub(os.date("%x", os.time()),"/", "")
+  math.randomseed(seed)
+Title = {
+"Monster rewards are halved, rounded up.",
+"Bosses have +1 HP and +1 DMG if the active player controls 3 or more souls.",
+"Players have +1 HP.",
+"Whenever a monster enters play, roll- on a 1 or 2, that monster becomes Shiny. Shiny monsters have +1 treasure added to their rewards.",
+"Bosses have +X HP, where X is the number of souls the active player controls minus the number of souls controlled by the player with the fewest souls.",
+"Players start with +10¢.",
+"Players loot +1 on their loot step.",
+"Whenever a player has more than 5 non-eternal items, they must destroy items they control until they have 5 or fewer non-eternal items.",
+"As the game starts, expand monster slots by 2.",
+"As the game starts, reveal the top card of the treasure deck. Each player gains a copy of it, and the copies become eternal. (If playing physically, keep the item in the middle of the table for reference, and use other cards to represent each player's copy.)" ,
+"All damage players take is reduced by 1, to a minimum of 1.",
+"As the game starts, expand shop slots by 2.",
+"Players do not heal during the heal step unless they are dead. At the start of your turn, heal to full HP.",
+"Players do not pay the death penalty.",
+"When a non-boss monster dies, the active player gains it as a soul with a value of 0.5. Players require 1 additional soul to win.",
+}
+Condition = {
+"Whenever a player rolls a ".. tostring(math.random(1,6)),
+"Whenever a player takes damage",
+"Whenever a player rolls the same result twice in a row on a turn",
+"Whenever a player spends ¢",
+"Whenever a player ends their turn while controlling or being tied for the most souls",
+"Whenever a player starts their turn",
+"Whenever a player ends their turn with 1 or fewer cards in their hand",
+"Whenever a player kills a monster",
+"Whenever a player resolves an event on their turn",
+"Whenever a player dies",
+"Whenever a player gains a soul",
+"Whenever a player activates their character card",
+"Whenever a player ends their turn while having or being tied for the most ¢",
+"Whenever a player ends their turn while having or being tied for the most loot cards",
+
+}
+PrefMod = {
+"they reveal the top X cards of a deck, then put them back in a random order",
+"they loot X",
+"they gain X¢",
+"they gain +X HP till end of turn",
+"they discard X loot cards",
+"they discard up to X shop items or a monsters not being attacked",
+"they lose X¢",
+"they have +X to their next roll",
+"they have -X to their next roll",
+"they may recharge up to X items",
+"they loot X, then discard X loot cards",
+"they look at the top X cards of a deck, then put them back in any order",
+}
+NoPrefMod = {
+"they reveal the top 2 cards of a deck, then put them back in a random order",
+"they put the top card of the monster deck in a slot not being attacked",
+"they take 1 damage if they are alive",
+"they loot 1",
+"they gain 3¢",
+"they gain +1 HP till end of turn",
+"they discard 1 loot card",
+"they discard a shop item or a monster not being attacked",
+"they lose 3¢",
+"monsters gain +1 DMG till end of turn",
+"they have +1 to their next roll",
+"they have -1 to their next roll",
+"they reroll an item they control",
+"they gain +1 treasure",
+"they put the top card of the treasure deck in a shop slot",
+"they may recharge 1 item",
+"they may play an additional loot card this turn",
+"they loot 1, then discard a loot card",
+"they deal 1 damage to a monster",
+"they look at the top 2 cards of a deck, then put them back in any order",
+"they may change a number in the effect text of a card in play or a loot being played by 1 till end of turn",
+}
+Prefix = {
+"that player's current HP",
+"the number of non-eternal items that player controls",
+"half the number of cards they have in their hand, rounded down",
+"the number of monsters in play",
+"a third of that player's current cent total, rounded down",
+"the amount of damage that player has dealt this turn",
+"the result of the last roll that resolved",
+"the number of souls they control",
+"4 minus the number of souls they control",
+"the number of charged character cards in play",
+"the number of times this has triggered this turn (starting at 1)",
+}
+NoPrefTrial = Title[math.random(#Title)] .. "\n" .. Condition[math.random(#Condition)] .. " " .. NoPrefMod[math.random(#NoPrefMod)]
+PrefTrial = Title[math.random(#Title)] .. "\n" .. Condition[math.random(#Condition)] .. " " .. PrefMod[math.random(#PrefMod)] .. "\n" .. "where X is " .. Prefix[math.random(#Prefix)] .. "."
+DoubleTrial = Title[math.random(#Title)] .. "\n" .. Condition[math.random(#Condition)] .. " " .. PrefMod[math.random(#PrefMod)] .. "\n" .. "where X is " .. Prefix[math.random(#Prefix)] .. "\n" .. Condition[math.random(math.random(#Condition))] .. " " .. NoPrefMod[math.random(#NoPrefMod)]
+TrialTypes = {
+  NoPrefTrial,
+  PrefTrial,
+  DoubleTrial,
+}
+selected = TrialTypes[math.random(3)]
+if selected == TrialTypes[3] and math.random(10) < 4 then
+  selected = TrialTypes[math.random(2)]
+end
+self.setDescription(selected)
+updateButtonLabels()
+end
+function onRandomize(player_color)
+  displayChallange()
+end
+
+function displayChallange()
+  local text = spawnObject({
+ position = self.getPosition(),
+ rotation = {90, 0, 0},
+fontsize = 9,
+ type = "3DText"
+})
+text.TextTool.setValue(selected)
+self.setDescription(selected)
+end

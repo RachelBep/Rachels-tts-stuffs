@@ -1,0 +1,309 @@
+function onLoad(save_state)
+  state = JSON.decode(save_state)
+
+
+
+owner = {0.5, 0.5, 0.5}
+owner = state.owner
+select = {
+  click_function = "setOwner",
+  function_owner = self,
+  label          = "",
+  position       = {1.5, .2, -1.8},
+  rotation       = {0, 180, 0},
+  width          = 150,
+  height         = 150,
+  font_size      = 340,
+  color          = owner,
+  font_color     = {1, 1, 1},
+  tooltip        = "claim this board to trigger on your turn start",
+}
+self.createButton(select)
+start = {
+  click_function = "startResolve",
+  function_owner = self,
+  label          = "Resolve Turn Start",
+  position       = {0, .2, -1.8},
+  rotation       = {0, 0, 0},
+  width          = 550,
+  height         = 280,
+  font_size      = 70,
+  color          = {1, 1, 1},
+  font_color     = {0, 0, 0},
+  tooltip        = "Resolves the start of turn effect of harem protagonist",
+}
+self.createButton(start)
+positions = {
+  {-1.2, .2, 0},
+  {0, 0.2, 0},
+  {1.2, .2, 0},
+  {-1.2, .2, 1.45},
+  {0, .2, 1.45},
+  {1.2, .2, 1.45}
+}
+nillheight = 620
+null= {
+  click_function = "nill",
+  function_owner = self,
+  label          = "",
+  position       = {0, 0, 0},
+  rotation       = {0, 0, 0},
+  width          = 530,
+  height         = 0,
+  font_size      = 70,
+  color          = {0, 0, 0},
+  font_color     = {0, 0, 0},
+  tooltip        = "Nullified",
+}
+self.createButton(null)
+self.createButton(null)
+self.createButton(null)
+
+
+count1 = 0
+count1 = state.count1
+counter1 = {
+  click_function = "counts1",
+  function_owner = self,
+  label          = tostring(count1),
+  position       = {-0.9, 0.18, -0.5},
+  rotation       = {0, 0, 0},
+  width          = 150,
+  height         = 150,
+  font_size      = 70,
+  color          = {1, 1, 1},
+  font_color     = {0, 0, 0},
+  tooltip        = "",
+}
+self.createButton(counter1)
+count2 = 0
+count2 = state.count2
+counter2 = {
+  click_function = "counts2",
+  function_owner = self,
+  label          = tostring(count2),
+  position       = {0.3, 0.18, -0.5},
+  rotation       = {0, 0, 0},
+  width          = 150,
+  height         = 150,
+  font_size      = 70,
+  color          = {1, 1, 1},
+  font_color     = {0, 0, 0},
+  tooltip        = "",
+}
+self.createButton(counter2)
+count3 = 0
+count3 = state.count3
+counter3 = {
+  click_function = "counts3",
+  function_owner = self,
+  label          = tostring(count3),
+  position       = {1.5, 0.18, -0.5},
+  rotation       = {0, 0, 0},
+  width          = 150,
+  height         = 150,
+  font_size      = 70,
+  color          = {1, 1, 1},
+  font_color     = {0, 0, 0},
+  tooltip        = "",
+}
+self.createButton(counter3)
+
+count4 = 0
+count4 = state.count4
+counter4 = {
+  click_function = "counts4",
+  function_owner = self,
+  label          = tostring(count4),
+  position       = {-0.9, 0.18, 0.95},
+  rotation       = {0, 0, 0},
+  width          = 150,
+  height         = 150,
+  font_size      = 70,
+  color          = {1, 1, 1},
+  font_color     = {0, 0, 0},
+  tooltip        = "",
+}
+self.createButton(counter4)
+count5 = 0
+count5 = state.count5
+counter5 = {
+  click_function = "counts5",
+  function_owner = self,
+  label          = tostring(count5),
+  position       = {0.3, 0.18, 0.95},
+  rotation       = {0, 0, 0},
+  width          = 150,
+  height         = 150,
+  font_size      = 70,
+  color          = {1, 1, 1},
+  font_color     = {0, 0, 0},
+  tooltip        = "",
+}
+self.createButton(counter5)
+count6 = 0
+count6 = state.count6
+counter6 = {
+  click_function = "counts6",
+  function_owner = self,
+  label          = tostring(count6),
+  position       = {1.5, 0.18, 0.95},
+  rotation       = {0, 0, 0},
+  width          = 150,
+  height         = 150,
+  font_size      = 70,
+  color          = {1, 1, 1},
+  font_color     = {0, 0, 0},
+  tooltip        = "",
+}
+self.createButton(counter6)
+
+
+end
+
+function counts1(_obj, _color, alt_click)
+  mod = alt_click and -1 or 1
+  count1 = math.min(math.max(count1 + mod, 0), 9)
+  self.editButton({index=5, label = count1})
+end
+function counts2(_obj, _color, alt_click)
+  mod = alt_click and -1 or 1
+  count2 = math.min(math.max(count2 + mod, 0), 9)
+  self.editButton({index=6, label = count2})
+end
+function counts3(_obj, _color, alt_click)
+  mod = alt_click and -1 or 1
+  count3 = math.min(math.max(count3 + mod, 0), 9)
+  self.editButton({index=7, label = count3})
+end
+function counts4(_obj, _color, alt_click)
+  mod = alt_click and -1 or 1
+  count4 = math.min(math.max(count4 + mod, 0), 9)
+  self.editButton({index=8, label = count4})
+end
+function counts5(_obj, _color, alt_click)
+  mod = alt_click and -1 or 1
+  count5 = math.min(math.max(count5 + mod, 0), 9)
+  self.editButton({index=9, label = count5})
+end
+function counts6(_obj, _color, alt_click)
+  mod = alt_click and -1 or 1
+  count6 = math.min(math.max(count6 + mod, 0), 9)
+  self.editButton({index=10, label = count6})
+end
+
+function setOwner(GameObject, Player)
+owner = Player
+self.editButton({index=0, color = owner})
+end
+function nill()
+
+end
+function startResolve()
+  self.editButton({index=4, height = 0})
+  self.editButton({index=3, height = 0})
+  self.editButton({index=2, height = 0})
+
+  for i, d in ipairs(positions) do
+    self.createButton({
+      click_function = "resolve" .. i,
+      function_owner = self,
+      label          = "Nullify",
+      position       = positions[i],
+      rotation       = {0, 0, 0},
+      width          = 450,
+      height         = 150,
+      font_size      = 70,
+      color          = {1, 1, 1},
+      font_color     = {0, 0, 0},
+      tooltip        = "",
+    })
+  end
+
+end
+function onPlayerTurnStart(player_color_start, player_color_previous)
+  if player_color_start == owner then
+    startResolve()
+  end
+end
+function onSave()
+    state = {
+        count1 = count1,
+        count2 = count2,
+        count3 = count3,
+        count4 = count4,
+        count5 = count5,
+        count6 = count6,
+        owner = owner
+    }
+    return JSON.encode(state)
+end
+
+function resolve1()
+  clearButtons()
+  self.editButton({index=2, height = nillheight, position = positions[1]})
+  picnic(1)
+end
+function resolve2()
+  clearButtons()
+  self.editButton({index=2, height = nillheight, position = positions[2]})
+  picnic(2)
+end
+function resolve3()
+  clearButtons()
+  self.editButton({index=2, height = nillheight, position = positions[3]})
+  picnic(3)
+end
+function resolve4()
+  clearButtons()
+  self.editButton({index=2, height = nillheight, position = positions[4]})
+  picnic(4)
+end
+function resolve5()
+  clearButtons()
+  self.editButton({index=2, height = nillheight, position = positions[5]})
+  picnic(5)
+end
+function resolve6()
+  clearButtons()
+  self.editButton({index=2, height = nillheight, position = positions[6]})
+  picnic(6)
+end
+
+function picnic(nullready)
+repeat
+  nullfirst = math.random(1,6)
+until(nullfirst ~=nullready)
+self.editButton({index=3, height = nillheight, position = positions[tonumber(nullfirst)]})
+repeat
+  nullsecond = math.random(1,6)
+until(nullsecond ~=nullready and nullsecond ~= nullfirst)
+self.editButton({index=4, height = nillheight, position = positions[tonumber(nullsecond)]})
+if nullready ~= 1 and nullfirst ~= 1 and nullsecond ~=1 then
+  counts1()
+end
+if nullready ~= 2 and nullfirst ~= 2 and nullsecond ~=2 then
+  counts2()
+end
+if nullready ~= 3 and nullfirst ~= 3 and nullsecond ~=3 then
+  counts3()
+end
+if nullready ~= 4 and nullfirst ~= 4 and nullsecond ~=4 then
+  counts4()
+end
+if nullready ~= 5 and nullfirst ~= 5 and nullsecond ~=5 then
+  counts5()
+end
+if nullready ~= 6 and nullfirst ~= 6 and nullsecond ~=6 then
+  counts6()
+end
+end
+
+function clearButtons()
+  self.removeButton(11)
+  self.removeButton(12)
+  self.removeButton(13)
+  self.removeButton(14)
+  self.removeButton(15)
+  self.removeButton(16)
+end

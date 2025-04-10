@@ -1,0 +1,204 @@
+function onLoad(save_state)
+  state = JSON.decode(save_state)
+  --log(state)
+  if state ~= nil then
+    val1 = state.val1
+    val2 = state.val2
+    val3 = state.val3
+    val4 = state.val4
+    val5 = state.val5
+    val6 = state.val6
+  end
+
+  self.createButton({
+    label=tostring(val1),
+    click_function="add_subtract1",
+    tooltip=val1,
+    function_owner=self,
+    position={1.15,0.15,1},
+    height=300,
+    width=300,
+    alignment = 3,
+    scale={x=1.5, y=1.5, z=1.5},
+    font_size=300,
+    font_color=black,
+    color={1,1,1,1}
+    })
+    self.createButton({
+      label=tostring(val2),
+      click_function="add_subtract2",
+      tooltip=val2,
+      function_owner=self,
+      position={1.15,0.15,0},
+      height=300,
+      width=300,
+      alignment = 3,
+      scale={x=1.5, y=1.5, z=1.5},
+      font_size=300,
+      font_color=black,
+      color={1,1,1,1}
+      })
+      self.createButton({
+        label=tostring(val3),
+        click_function="add_subtract3",
+        tooltip=val3,
+        function_owner=self,
+        position={1.15,0.15,-1},
+        height=300,
+        width=300,
+        alignment = 3,
+        scale={x=1.5, y=1.5, z=1.5},
+        font_size=300,
+        font_color=black,
+        color={1,1,1,1}
+        })
+        self.createButton({
+          label=tostring(val4),
+          click_function="add_subtract4",
+          tooltip=val4,
+          function_owner=self,
+          position={-1.15,0.15,1},
+          height=300,
+          width=300,
+          alignment = 3,
+          scale={x=1.5, y=1.5, z=1.5},
+          font_size=300,
+          font_color=black,
+          color={1,1,1,1}
+          })
+          self.createButton({
+            label=tostring(val5),
+            click_function="add_subtract5",
+            tooltip=val5,
+            function_owner=self,
+            position={-1.15,0.15,0},
+            height=300,
+            width=300,
+            alignment = 3,
+            scale={x=1.5, y=1.5, z=1.5},
+            font_size=300,
+            font_color=black,
+            color={1,1,1,1}
+            })
+            self.createButton({
+              label=tostring(val6),
+              click_function="add_subtract6",
+              tooltip=val6,
+              function_owner=self,
+              position={-1.15,0.15,-1},
+              height=300,
+              width=300,
+              alignment = 3,
+              scale={x=1.5, y=1.5, z=1.5},
+              font_size=300,
+              font_color=black,
+              color={1,1,1,1}
+              })
+end
+val1=0
+val2=0
+val3=0
+val4=0
+val5=0
+val6=0
+MIN_VALUE = -99
+MAX_VALUE = 999
+function add_subtract1(_obj, _color, alt_click)
+    mod = alt_click and -1 or 1
+    new_value = math.min(math.max(val1 + mod, MIN_VALUE), MAX_VALUE)
+    if val1 ~= new_value then
+        val1 = new_value
+        updateVal()
+
+    end
+end
+function add_subtract2(_obj, _color, alt_click)
+    mod = alt_click and -1 or 1
+    new_value = math.min(math.max(val2 + mod, MIN_VALUE), MAX_VALUE)
+    if val2 ~= new_value then
+        val2 = new_value
+        updateVal()
+
+    end
+end
+function add_subtract3(_obj, _color, alt_click)
+    mod = alt_click and -1 or 1
+    new_value = math.min(math.max(val3 + mod, MIN_VALUE), MAX_VALUE)
+    if val3 ~= new_value then
+        val3 = new_value
+        updateVal()
+
+    end
+end
+function add_subtract4(_obj, _color, alt_click)
+    mod = alt_click and -1 or 1
+    new_value = math.min(math.max(val4 + mod, MIN_VALUE), MAX_VALUE)
+    if val4 ~= new_value then
+        val4 = new_value
+        updateVal()
+
+    end
+end
+function add_subtract5(_obj, _color, alt_click)
+    mod = alt_click and -1 or 1
+    new_value = math.min(math.max(val5 + mod, MIN_VALUE), MAX_VALUE)
+    if val5 ~= new_value then
+        val5 = new_value
+        updateVal()
+
+    end
+end
+function add_subtract6(_obj, _color, alt_click)
+    mod = alt_click and -1 or 1
+    new_value = math.min(math.max(val6 + mod, MIN_VALUE), MAX_VALUE)
+    if val6 ~= new_value then
+        val6 = new_value
+        updateVal()
+
+    end
+end
+
+function updateVal()
+  self.editButton({
+      index = 0,
+      label = tostring(val1),
+      tooltip = tostring(val1)
+      })
+      self.editButton({
+          index = 1,
+          label = tostring(val2),
+          tooltip = tostring(val2)
+          })
+          self.editButton({
+              index = 2,
+              label = tostring(val3),
+              tooltip = tostring(val3)
+              })
+              self.editButton({
+                  index = 3,
+                  label = tostring(val4),
+                  tooltip = tostring(val4)
+                  })
+                  self.editButton({
+                      index = 4,
+                      label = tostring(val5),
+                      tooltip = tostring(val5)
+                      })
+                      self.editButton({
+                          index = 5,
+                          label = tostring(val6),
+                          tooltip = tostring(val6)
+                          })
+end
+
+function onSave()
+    state = {
+        val1 = val1,
+        val2 = val2,
+        val3 = val3,
+        val4 = val4,
+        val5 = val5,
+        val6 = val6,
+    }
+    return JSON.encode(state)
+end

@@ -1,0 +1,284 @@
+function onLoad(save_state)
+  self.createButton({
+        click_function = "nill",
+        function_owner = self,
+        label          = "",
+        position       = {1.23, 0, 0},
+        rotation       = {0, 0, 0},
+        hover_color    = {0, 0, 0.8},
+        press_color    = {0, 0, .8},
+        scale          = {.1, .1, .1},
+        width          = 1500,
+        height         = 15000,
+        font_size      = 340,
+        color          = {0, 0, 0.8},
+        font_color     = {1, 1, 1},
+    })
+    self.createButton({
+          click_function = "nill",
+          function_owner = self,
+          label          = "",
+          position       = {1.23, 0.01, ((1.33*((bobber-500)/500))*-1)}, --0 is 1.33, 100% is -1.33
+          rotation       = {0, 0, 0},
+          hover_color    = {0, 0.8, 0},
+          press_color    = {0, 0.8, 0},
+          scale          = {.1, .1, .1},
+          width          = 1500,
+          height         = 2200,
+          font_size      = 340,
+          color          = {0, 0.8, 0,},
+          font_color     = {1, 1, 1},
+      })
+      self.createButton({
+            click_function = "nill",
+            function_owner = self,
+            label          = "",
+            position       = {1.44, 0, 0},
+            rotation       = {0, 0, 0},
+            hover_color    = {0.2, 0.2, 0.0},
+            press_color    = {0.2, 0.2, 0.0},
+            scale          = {.1, .1, .1},
+            width          = 500,
+            height         = 15000,
+            font_size      = 340,
+            color          = {0.2, 0.2, 0.0},
+            font_color     = {1, 1, 1},
+        })
+        self.createButton({
+              click_function = "nill",
+              function_owner = self,
+              label          = "",
+              position       = {1.44, 0.01, (1.56*((1000-goodness)/1000))}, --(1.56*((1000-goodness)/1000))
+              rotation       = {0, 0, 0},
+              hover_color    = {0.8, 0.8, 0},
+              press_color    = {0.8, 0.8, 0},
+              scale          = {.1, .1, .1},
+              width          = 500,
+              height         = (15000*(goodness/1000)),
+              font_size      = 340,
+              color          = {0.8, 0.8, 0},
+              font_color     = {1, 1, 1},
+          })
+          self.createButton({
+                click_function = "nill",
+                function_owner = self,
+                label          = "",
+                position       = {1.23, 0.2, ((1.43*((fish-500)/500))*-1)},
+                rotation       = {0, 0, 0},
+                hover_color    = {0.5, 0.6, 1},
+                press_color    = {0.5, 0.6, 1},
+                scale          = {.1, .1, .1},
+                width          = 1200,
+                height         = 0,
+                font_size      = 340,
+                color          = {0.5, 0.6, 1},
+                font_color     = {1, 1, 1},
+            })
+            self.createButton({
+              click_function = "start",
+              function_owner = self,
+              label          = "Begin\nFishing",
+              position       = {-.6,0.3,-.9},
+              rotation       = {0, 0, 0},
+              scale          = {.3, .3, .3},
+              width          = 900,
+              height         = 900,
+              font_size      = 200,
+              color          = {1, 1, 1},
+              font_color     = {0, 0, 0},
+            })
+            addHotkey("Grab", Click, true)
+end
+
+
+function nill()
+end
+function start(obj, color, alt)
+  if gaming == false then
+  player = color
+  perfect = 1
+  self.editButton({index=4, height = 1200})
+  fishai = {
+    speed =math.random(9,12)/10,
+    up = math.random(5, 15)/10,
+    down = math.random(5, 15)/10,
+    difficulty = math.random(50, 460),
+    patience = math.random(9, 100)
+  }
+  rest=fishai.patience*(math.random(1,450)/100)
+  caught=true
+  fish = 20
+  momentum = 0
+  goodness = 0
+  bobber = 0
+  gaming = true
+  goal = math.random(0, 1000)
+  safe = true
+  Wait.frames(
+    function()
+        safe = false
+    end,
+    30
+)
+self.locked = true
+end
+end
+
+function reset()
+  self.locked = false
+  self.editButton({index=4, height = 0})
+  gaming = false
+  bobber=0
+  goodness=0
+  player = nil
+  renderBar()
+  renderFish()
+  renderBobber()
+end
+
+function win()
+  reset()
+  winner = true
+  xp = (((100-(fishai.patience*.4))*fishai.speed)*((fishai.down*.5)+(fishai.up*.5)))
+  if xp < 70 then
+    quality = 1+perfect
+  elseif xp < 100 then
+    quality = 2+perfect
+  else
+    quality = 3+perfect
+  end
+
+  if quality == 1 then
+    print("discard 1 loot then loot 1 from the fish deck")
+    elseif quality == 2 then
+      print("Silver:loot 1 from the fish deck")
+    elseif quality == 3 then
+      print("Gold:look at the top 3 cards of the fish deck, put one in your hand, discard the rest")
+    elseif quality == 4 then
+      print("Iridium:look at the top 5 cards of the fish deck, put two in your hand, discard the rest")
+  end
+end
+
+function lose()
+  reset()
+  if winner == false then
+
+  end
+  winner = nil
+end
+
+function Click(playerColor, hoveredObject, pointerPosition, isKeyUp)
+  if playerColor == player then
+  if isKeyUp == false then
+    hover = true
+  else
+    hover=false
+  end
+end
+end
+
+
+function tobitch(value)
+  return value and 1 or 0
+end
+
+
+function onUpdate()
+  if gaming then
+    if hover == true then
+      if momentum <= -0.01 then
+        momentum = momentum*.85
+      end
+      momentum = momentum + 0.3
+    else
+      momentum = momentum - 0.25
+    end
+    if bobber == 1000 then
+      momentum = math.min(momentum, 0)
+    end
+    --print(momentum)
+    if bobber == 0 then
+      if momentum <= -1 then
+        momentum = math.abs(momentum*0.37)
+        momentum = math.max(momentum, 0.1)
+      end
+      momentum = math.max(momentum, 0)
+    end
+    if fish >= ((bobber-120)-lenient) and fish <= ((bobber+170)+lenient) then
+      caught = true
+      goodness = goodness +2.8
+    else
+      perfect = 0
+      caught = false
+      goodness = goodness -.6
+    end
+    goodness = math.min(math.max(goodness, 0), 1000)
+    bobber = math.min(math.max(bobber + momentum, 0), 1000)
+    if bobber < 1.4 then
+      bobber = 0
+    end
+
+if goal >= fish-30 and goal <= fish+30 then
+  if rest == 0 then
+  while goal >= (fish-30)-fishai.difficulty and goal <= (fish+30)+fishai.difficulty do
+    goal = math.random(0, 1000)
+    rest = (fishai.patience*(math.random(1,450)/100))
+  end
+else
+  rest = math.max(0, rest-1)
+  if math.random(1,40) > 20 and rest % 6 then
+  fish = (fish)+math.random(-6,6)
+ end
+end
+elseif goal >= fish then
+  fish = fish + (2*(fishai.speed * fishai.up))
+elseif goal <= fish then
+  fish = fish - (2*(fishai.speed * fishai.down))
+end
+
+  fish = math.min(math.max(fish, 0), 1000)
+  renderBobber()
+  renderBar()
+  renderFish()
+  if goodness >= 999 then
+    win()
+  end
+  if goodness <= 1 and safe == false then
+    lose()
+  end
+end
+end
+
+fishai = {
+  speed =math.random(9,12)/10,
+  up = math.random(5, 15)/10,
+  down = math.random(5, 15)/10,
+  difficulty = math.random(50, 460),
+  patience = math.random(9, 100)
+}
+lenient=0
+rest=fishai.patience*(math.random(1,450)/100)
+caught=true
+fish = 20
+momentum = 0
+hover = false
+goodness = 0
+bobber = 0
+gaming = false
+goal = math.random(0, 1000)
+
+
+function renderBar()
+  self.editButton({index=3, position = {1.44, 0.01, (1.56*((1000-goodness)/1000))}})
+  self.editButton({index=3, height   = (15000*(goodness/1000))})
+end
+
+function renderFish()
+  self.editButton({index=4, position = {1.23, 0.2, ((1.43*((fish-500)/500))*-1)}})
+end
+
+
+
+function renderBobber()
+  self.editButton({index=1, position = {1.23, 0.01, ((1.33*((bobber-500)/500))*-1)}})
+end

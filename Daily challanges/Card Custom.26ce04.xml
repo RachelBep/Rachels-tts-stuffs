@@ -1,0 +1,9 @@
+<Panel color= "#FFFFFF00" width="2150" height="3000" rotation= "180 180" active="true" position="0 0 -50" scale="0.1 0.1 0.1">
+  <Panel color= "#F333FF00" offsetXY="0 1200" width="1350" height="320">
+    <Text text="" id="namebox" fontSize="80000" color="#000000" resizeTextMaxSize="9000000" resizeTextForBestFit="true"> </Text>
+  </Panel>
+  <Panel color= "#F333FF00" offsetXY="0 -50" width="1800" height="2100">
+    <Text text="" id="ability" fontSize="80000" color="#000000" resizeTextMaxSize="9000000" resizeTextForBestFit="true"> </Text>
+  </Panel>
+
+</Panel>

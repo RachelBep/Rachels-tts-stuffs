@@ -1,0 +1,1968 @@
+function onLoad()
+  selected = "clear"
+  spaces = {
+    {'x1y1',  1, 1 },
+    {'x2y1',  2, 1 },
+    {'x3y1',  3, 1 },
+    {'x4y1',  4, 1 },
+    {'x5y1',  5, 1 },
+    {'x6y1',  6, 1 },
+    {'x7y1',  7, 1 },
+    {'x8y1',  8, 1 },
+    {'x1y2',  1, 2 },
+    {'x2y2',  2, 2 },
+    {'x3y2',  3, 2 },
+    {'x4y2',  4, 2 },
+    {'x5y2',  5, 2 },
+    {'x6y2',  6, 2 },
+    {'x7y2',  7, 2 },
+    {'x8y2',  8, 2 },
+    {'x1y3',  1, 3 },
+    {'x2y3',  2, 3 },
+    {'x3y3',  3, 3 },
+    {'x4y3',  4, 3 },
+    {'x5y3',  5, 3 },
+    {'x6y3',  6, 3 },
+    {'x7y3',  7, 3 },
+    {'x8y3',  8, 3 },
+    {'x1y4',  1, 4 },
+    {'x2y4',  2, 4 },
+    {'x3y4',  3, 4 },
+    {'x4y4',  4, 4 },
+    {'x5y4',  5, 4 },
+    {'x6y4',  6, 4 },
+    {'x7y4',  7, 4 },
+    {'x8y4',  8, 4 },
+    {'x1y5',  1, 5 },
+    {'x2y5',  2, 5 },
+    {'x3y5',  3, 5 },
+    {'x4y5',  4, 5 },
+    {'x5y5',  5, 5 },
+    {'x6y5',  6, 5 },
+    {'x7y5',  7, 5 },
+    {'x8y5',  8, 5 },
+    {'x1y6',  1, 6 },
+    {'x2y6',  2, 6 },
+    {'x3y6',  3, 6 },
+    {'x4y6',  4, 6 },
+    {'x5y6',  5, 6 },
+    {'x6y6',  6, 6 },
+    {'x7y6',  7, 6 },
+    {'x8y6',  8, 6 },
+    {'x1y7',  1, 7 },
+    {'x2y7',  2, 7 },
+    {'x3y7',  3, 7 },
+    {'x4y7',  4, 7 },
+    {'x5y7',  5, 7 },
+    {'x6y7',  6, 7 },
+    {'x7y7',  7, 7 },
+    {'x8y7',  8, 7 },
+    {'x1y8',  1, 8 },
+    {'x2y8',  2, 8 },
+    {'x3y8',  3, 8 },
+    {'x4y8',  4, 8 },
+    {'x5y8',  5, 8 },
+    {'x6y8',  6, 8 },
+    {'x7y8',  7, 8 },
+    {'x8y8',  8, 8 },
+  }
+  urls = {
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_flirtation.png",
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_joy.png",
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_passion.png",
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_romance.png",
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_sentiment.png",
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_sexuality.png",
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_talent.png",
+    "https://file.garden/Zc4Z0v0NHTb1qSJ9/uploads/token_broken.png"
+  }
+  weight = {
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  2,
+  2,
+  2,
+  3,
+  3,
+  3,
+  3,
+  3,
+  3,
+  4,
+  4,
+  4,
+  4,
+  4,
+  4,
+  4,
+  4,
+  5,
+  5,
+  5,
+  5,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  7,
+  7,
+  7,
+  7,
+  7,
+  7,
+  7,
+  7,
+  8,
+  8,
+
+  }
+  greenm=0
+  yellowm=0
+  pinkm=0
+  orangem=0
+  cyanm=0
+  redm=0
+  bluem=0
+  purplem=0
+  flirt = urls[1]
+  joy = urls[2]
+  pass = urls[3]
+  rom = urls[4]
+  sent = urls[5]
+  sex = urls[6]
+  tal = urls[7]
+  brok = urls[8]
+
+
+  x1y1 = {
+      click_function = "doNothing",
+      function_owner = self,
+      color = {r=1, g=1, b=0, a = 0.5},
+      position = {-8, .6, -8},
+      width = 1000,
+      height = 1000,
+  }
+generateBoard()
+
+  end
+  function doNothing()
+    broadcastToAll("anus")
+  end
+function generateBoard()
+  self.setDecals({})
+  for i, key in ipairs(spaces) do
+      self.createButton({
+          click_function = "click" .. key[1],
+          function_owner = self,
+          width = 1000,
+          height = 1000,
+          color = {r=1, b=1, g=1, a = 0},
+          font_color = {1,1,1},
+          font_size = 0,
+          position = {(key[2]*2.08)-9.38,.6,((key[3]*2.08)-9.38)},
+          label = key[1],
+          tooltip = "select"
+      })
+      self.addDecal({
+      name=key[1],
+      url=getUrl(),
+      position= {(key[2]*-2.08)+9.38,.6,((key[3]*2.08)-9.38)},
+      rotation = {90, 0, 180},
+      scale = {2.3, 2.3, 1100} -- this is my favorite bit of this code its so hacky and dumb
+
+    })
+  end
+  decalTable = self.getDecals()
+  eraseLines()
+  self.setDecals(decalTable)
+  self.createButton({
+      click_function = "rerollBoard",
+      function_owner = self,
+      width = 5000,
+      height = 1000,
+      color = {r=.3, b=.3, g=.3, a = 1},
+      font_color = {1,1,1},
+      font_size = 0,
+      position = {0, .6, 10},
+      label = "shuffle",
+      tooltip = "Shuffle"
+    })
+
+
+
+  end
+  function rerollBoard()
+    self.setDecals({})
+    for i, key in ipairs(spaces) do
+      self.addDecal({
+      name=key[1],
+      url=getUrl(),
+      position= {(key[2]*-2.08)+9.38,.6,((key[3]*2.08)-9.38)},
+      rotation = {90, 0, 180},
+      scale = {2.3, 2.3, 1100} -- this is my favorite bit of this code its so hacky and dumb
+
+    })
+    end
+    decalTable = self.getDecals()
+    eraseLines()
+    self.setDecals(decalTable)
+  end
+
+function removeEntry(table, key)
+  local newTable = {}
+  local newCount = 1
+  for i,j in ipairs(table) do
+    if key ~= i then
+      newTable[newCount] = j
+      newCount = newCount + 1
+    end
+  end
+  return newTable
+end
+
+
+
+function swapp(what, where)
+  whwh = what + where
+  decalTable[what].url = decalTable[whwh].url
+  decalTable[whwh].url = storeg
+end
+
+
+function move(to, dir, render, erasing)
+unselect()
+
+
+if dir == "right" then
+for i, image in ipairs(decalTable) do
+  if selected ~= to then
+  if decalTable[i].name == selected then
+    storeg = decalTable[i].url
+    swapp(i, 1)
+    selected = (string.sub(selected,1, 1).. tostring((tonumber(string.sub(selected,2, 2)))+ 1) .. string.sub(selected,3, 4))
+  end
+else selected = "clear"
+  break
+end
+end
+elseif dir == "left" then
+for i = #decalTable, 1, -1 do
+  if selected ~= to then
+  if decalTable[i].name == selected then
+    storeg = decalTable[i].url
+    swapp(i, -1)
+    selected = (string.sub(selected,1, 1).. tostring((tonumber(string.sub(selected,2, 2)))- 1) .. string.sub(selected,3, 4))
+  end
+else selected = "clear"
+  break
+end
+end
+
+
+elseif dir == "down" then
+  for i, image in ipairs(decalTable) do
+    if selected ~= to then
+    if decalTable[i].name == selected then
+      storeg = decalTable[i].url
+      swapp(i, 8)
+      selected = (string.sub(selected,1, 3).. tostring((tonumber(string.sub(selected,4, 4)))+ 1))
+    end
+  else selected = "clear"
+    break
+  end
+  end
+elseif dir == "up" then
+  for i = #decalTable, 1, -1 do
+    if selected ~= to then
+    if decalTable[i].name == selected then
+      storeg = decalTable[i].url
+      swapp(i, -8)
+      selected = (string.sub(selected,1, 3).. tostring((tonumber(string.sub(selected,4, 4)))- 1))
+    end
+  else selected = "clear"
+    break
+  end
+  end
+
+
+  end
+if render == nil then
+self.setDecals(decalTable)
+end
+if erasing == nil then
+eraseLines(true)
+end
+
+
+end
+
+function getLines()
+didwork = false
+wrap = 0
+for i, key in ipairs(decalTable) do
+  wrap = wrap + 1
+  if wrap == 9 then
+    wrap = 1
+  end
+  if (decalTable[i].scale)[3] == 1100  then
+    if i < 49 then
+      if decalTable[i].url == decalTable[i+8].url and decalTable[i].url == decalTable[i+16].url then
+        (decalTable[i].scale)[3] = 1101
+        (decalTable[i+8].scale)[3] = 1101
+        (decalTable[i+16].scale)[3] = 1101
+        if i < 41 and decalTable[i].url == decalTable[i+24].url then
+          (decalTable[i+24].scale)[3] = 1101
+          if i < 33 and decalTable[i].url == decalTable[i+32].url then
+            (decalTable[i+32].scale)[3] = 1101
+            if  i < 25 and decalTable[i].url == decalTable[i+40].url then
+              (decalTable[i+40].scale)[3] = 1101
+              if  i < 17 and decalTable[i].url == decalTable[i+48].url then
+                (decalTable[i+48].scale)[3] = 1101
+                if i < 9 and  decalTable[i].url == decalTable[i+56].url  then
+                  (decalTable[i+56].scale)[3] = 1101
+                  if  i < 1 and decalTable[i].url == decalTable[i+56].url then
+                    (decalTable[i+64].scale)[3] = 1101
+
+                  end
+                end
+              end
+            end
+          end
+        end
+        didwork = true
+      end
+    end--end of ver check
+
+    if wrap < 7 and decalTable[i].url == decalTable[i+1].url and decalTable[i].url == decalTable[i+2].url and i < 63  then
+      (decalTable[i].scale)[3] = 1101
+      (decalTable[i+1].scale)[3] = 1101
+      (decalTable[i+2].scale)[3] = 1101
+      if  wrap < 6 and decalTable[i].url == decalTable[i+3].url and i < 62 then
+        (decalTable[i+3].scale)[3] = 1101
+        if wrap < 5 and decalTable[i].url == decalTable[i+4].url and i < 61 then
+          (decalTable[i+4].scale)[3] = 1101
+          if  wrap < 4 and decalTable[i].url == decalTable[i+5].url and i < 60 then
+            (decalTable[i+5].scale)[3] = 1101
+            if wrap < 3 and decalTable[i].url == decalTable[i+6].url and i < 59 then
+              (decalTable[i+6].scale)[3] = 1101
+              if wrap < 2 and decalTable[i].url == decalTable[i+7].url and i < 58 then
+                (decalTable[i+7].scale)[3] = 1101
+                if wrap < 1 and decalTable[i].url == decalTable[i+8].url and i < 57 then
+                  (decalTable[i+8].scale)[3] = 1101
+
+                end
+              end
+            end
+          end
+        end
+      end
+      didwork = true
+    end--end of horis check
+
+
+  end--detecting if the tile isnt 1100
+end--detecting lines for loop end
+
+
+  if didwork == true then
+    for i, ass in ipairs(decalTable) do
+      if (decalTable[i].scale)[3] ~= 1100 then
+        (decalTable[i].scale)[3] = 1100
+
+        if decalTable[i].url == flirt then
+          greenm = greenm + 1
+        end
+        if decalTable[i].url == joy then
+          yellowm = yellowm + 1
+        end
+        if decalTable[i].url == rom then
+          orangem = orangem + 1
+        end
+        if decalTable[i].url == sent then
+          cyanm = cyanm + 1
+        end
+        if decalTable[i].url == sex then
+          redm = redm + 1
+        end
+        if decalTable[i].url == tal then
+          bluem = bluem + 1
+        end
+        if decalTable[i].url == brok then
+          purplem = purplem + 1
+        end
+        if decalTable[i].url == pass then
+          pinkm = pinkm + 1
+        end
+
+        decalTable[i].url = getUrl()
+        selected = decalTable[i].name
+        move((string.sub(decalTable[i].name, 1, 3) .. "1"), "up", false, true)
+      end
+    end--for loop end
+
+  end--didwork end
+  self.setDecals(decalTable)
+
+
+
+
+end
+
+
+function getUrl()
+  trurl = urls[weight[math.random(#weight)]]
+
+  return trurl
+end
+
+
+
+function eraseLines(ligma)
+
+  worker = true
+tryhard = 0
+
+
+
+  getLines()
+if didwork==true then
+  getLines()
+  if didwork==true then
+    ligmaball = true
+    getLines()
+    if didwork==true then
+      getLines()
+      if didwork==true then
+        getLines()
+        if didwork==true then
+          getLines()
+          if didwork==true then
+            getLines()
+            if didwork==true then
+              getLines()
+
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+
+if ligma == true and ligmaballs == nil then
+  if greenm ~= 0 or yellowm ~= 0 or pinkm ~= 0 or orangem ~= 0 or cyanm ~= 0 or redm ~= 0 or bluem ~= 0 or purplem ~= 0 then
+    printToAll("Good Job")
+  end
+  if greenm ~= 0 then
+    printToAll(("Flirtation Match loot " .. tostring(math.floor((((greenm-2)/2)+0.5))) .. " then discard " .. tostring(math.floor((((greenm-2)/2)+0.5))) .. " cards"), {0, 1, 0})
+  end
+  if yellowm ~= 0 then
+    printToAll(("Joy Match You may make " .. tostring(yellowm -1) .. " additional moves this turn."),  {1, 1, 0})
+  end
+  if pinkm ~= 0 then
+    printToAll(("Passion Match make " .. tostring(pinkm-2) .. " attack rolls against an attackable target, taking no damage if you miss. You have -1 to these rolls"), {1, .5, .7})
+  end
+  if orangem ~= 0 then
+    printToAll(("Romance Match gain " .. (tostring((orangem-2)*2)+1) .. " cents"), {1, .5, 0})
+  end
+  if cyanm ~= 0 then
+    printToAll(("Sentiment Match you may play an additional " .. tostring(cyanm - 2) .. " loot cards this turn."), {0, 1, 1})
+  end
+  if redm ~= 0 then
+    printToAll(("Sexuality Match gain +1 to the next " .. tostring(redm-2) .. " attack rolls you make this turn."), {1, 0, 0})
+  end
+  if bluem ~= 0 then
+    printToAll(("Talent Match prevent the next instance of up to " .. tostring(bluem - 2) .. " damage you would take this turn."), {0,  .5, 1})
+  end
+  if purplem ~= 0 then
+    printToAll(("Broken Heart Match take " .. tostring(purplem-2) .. " damage."),  {.7, 0, 1})
+end
+  end
+selected = "clear"
+greenm=0
+yellowm=0
+pinkm=0
+orangem=0
+cyanm=0
+redm=0
+bluem=0
+purplem=0
+ligmaball = nil
+
+self.setDecals(decalTable)
+end
+
+
+
+
+function unselect()
+  bautons = self.getButtons()
+  for i, butn in ipairs(bautons) do
+    if i <= 64 then
+      self.editButton({index=i-1, color={1,1,1,0}, tooltip = "select"})
+    end
+  end
+end
+
+
+
+
+
+function clickx1y1()
+  if selected == "clear" then
+    selected = "x1y1"
+    self.editButton({index=(((1+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y1" then
+    selected = "clear"
+    self.editButton({index=(((1+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "1" then
+    move("x1y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "1" then
+    move("x1y1", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "1" then
+    move("x1y1", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "1" then
+    move("x1y1", "down" )
+  else
+
+  end
+end
+function clickx2y1()
+  if selected == "clear" then
+    selected = "x2y1"
+    self.editButton({index=(((2+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y1" then
+    selected = "clear"
+    self.editButton({index=(((2+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "2" then
+    move("x2y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "2" then
+    move("x2y1", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "1" then
+    move("x2y1", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "1" then
+    move("x2y1", "down")
+  else
+
+  end
+end
+function clickx3y1()
+  if selected == "clear" then
+    selected = "x3y1"
+    self.editButton({index=(((3+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y1" then
+    selected = "clear"
+    self.editButton({index=(((3+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "3" then
+    move("x3y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "3" then
+    move("x3y1", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "1" then
+    move("x3y1", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "1" then
+    move("x3y1", "down")
+  else
+
+  end
+end
+function clickx4y1()
+  if selected == "clear" then
+    selected = "x4y1"
+    self.editButton({index=(((4+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y1" then
+    selected = "clear"
+    self.editButton({index=(((4+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "4" then
+    move("x4y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "4" then
+    move("x4y1", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "1" then
+    move("x4y1", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "1" then
+    move("x4y1", "down")
+  else
+
+  end
+end
+function clickx5y1()
+  if selected == "clear" then
+    selected = "x5y1"
+    self.editButton({index=(((5+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y1" then
+    selected = "clear"
+    self.editButton({index=(((5+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "5" then
+    move("x5y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "5" then
+    move("x5y1", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "1" then
+    move("x5y1", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "1" then
+    move("x5y1", "down")
+  else
+
+  end
+end
+function clickx5y1()
+  if selected == "clear" then
+    selected = "x5y1"
+    self.editButton({index=(((5+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y1" then
+    selected = "clear"
+    self.editButton({index=(((5+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "5" then
+    move("x5y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "5" then
+    move("x5y1", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "1" then
+    move("x5y1", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "1" then
+    move("x5y1", "down")
+  else
+
+  end
+end
+function clickx6y1()
+  if selected == "clear" then
+    selected = "x6y1"
+    self.editButton({index=(((6+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y1" then
+    selected = "clear"
+    self.editButton({index=(((6+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "6" then
+    move("x6y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "6" then
+    move("x6y1", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "1" then
+    move("x6y1", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "1" then
+    move("x6y1", "down")
+  else
+
+  end
+end
+function clickx7y1()
+  if selected == "clear" then
+    selected = "x7y1"
+    self.editButton({index=(((7+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y1" then
+    selected = "clear"
+    self.editButton({index=(((7+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "7" then
+    move("x7y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "7" then
+    move("x7y1", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "1" then
+    move("x7y1", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "1" then
+    move("x7y1", "down")
+  else
+
+  end
+end
+function clickx8y1()
+  if selected == "clear" then
+    selected = "x8y1"
+    self.editButton({index=(((8+((1-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y1" then
+    selected = "clear"
+    self.editButton({index=(((8+((1-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) > "8" then
+    move("x8y1", "left")
+  elseif  string.sub(selected,4, 4) == "1" and string.sub(selected,2, 2) < "8" then
+    move("x8y1", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "1" then
+    move("x8y1", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "1" then
+    move("x8y1", "down")
+  else
+
+  end
+end
+
+function clickx1y2()
+  if selected == "clear" then
+    selected = "x1y2"
+    self.editButton({index=(((1+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y2" then
+    selected = "clear"
+    self.editButton({index=(((1+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "1" then
+    move("x1y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "1" then
+    move("x1y2", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "2" then
+    move("x1y2", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "2" then
+    move("x1y2", "down")
+  else
+
+  end
+end
+function clickx2y2()
+  if selected == "clear" then
+    selected = "x2y2"
+    self.editButton({index=(((2+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y2" then
+    selected = "clear"
+    self.editButton({index=(((2+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "2" then
+    move("x2y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "2" then
+    move("x2y2", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "2" then
+    move("x2y2", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "2" then
+    move("x2y2", "down")
+  else
+
+  end
+end
+function clickx3y2()
+  if selected == "clear" then
+    selected = "x3y2"
+    self.editButton({index=(((3+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y2" then
+    selected = "clear"
+    self.editButton({index=(((3+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "3" then
+    move("x3y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "3" then
+    move("x3y2", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "2" then
+    move("x3y2", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "2" then
+    move("x3y2", "down")
+  else
+
+  end
+end
+function clickx4y2()
+  if selected == "clear" then
+    selected = "x4y2"
+    self.editButton({index=(((4+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y2" then
+    selected = "clear"
+    self.editButton({index=(((4+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "4" then
+    move("x4y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "4" then
+    move("x4y2", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "2" then
+    move("x4y2", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "2" then
+    move("x4y2", "down")
+  else
+
+  end
+end
+function clickx5y2()
+  if selected == "clear" then
+    selected = "x5y2"
+    self.editButton({index=(((5+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y2" then
+    selected = "clear"
+    self.editButton({index=(((5+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "5" then
+    move("x5y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "5" then
+    move("x5y2", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "2" then
+    move("x5y2", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "2" then
+    move("x5y2", "down")
+  else
+
+  end
+end
+function clickx5y2()
+  if selected == "clear" then
+    selected = "x5y2"
+    self.editButton({index=(((5+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y2" then
+    selected = "clear"
+    self.editButton({index=(((5+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "5" then
+    move("x5y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "5" then
+    move("x5y2", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "2" then
+    move("x5y2", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "2" then
+    move("x5y2", "down")
+  else
+
+  end
+end
+function clickx6y2()
+  if selected == "clear" then
+    selected = "x6y2"
+    self.editButton({index=(((6+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y2" then
+    selected = "clear"
+    self.editButton({index=(((6+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "6" then
+    move("x6y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "6" then
+    move("x6y2", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "2" then
+    move("x6y2", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "2" then
+    move("x6y2", "down")
+  else
+
+  end
+end
+function clickx7y2()
+  if selected == "clear" then
+    selected = "x7y2"
+    self.editButton({index=(((7+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y2" then
+    selected = "clear"
+    self.editButton({index=(((7+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "7" then
+    move("x7y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "7" then
+    move("x7y2", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "2" then
+    move("x7y2", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "2" then
+    move("x7y2", "down")
+  else
+
+  end
+end
+function clickx8y2()
+  if selected == "clear" then
+    selected = "x8y2"
+    self.editButton({index=(((8+((2-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y2" then
+    selected = "clear"
+    self.editButton({index=(((8+((2-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) > "8" then
+    move("x8y2", "left")
+  elseif  string.sub(selected,4, 4) == "2" and string.sub(selected,2, 2) < "8" then
+    move("x8y2", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "2" then
+    move("x8y2", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "2" then
+    move("x8y2", "down")
+  else
+
+  end
+end
+
+function clickx1y3()
+  if selected == "clear" then
+    selected = "x1y3"
+    self.editButton({index=(((1+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y3" then
+    selected = "clear"
+    self.editButton({index=(((1+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "1" then
+    move("x1y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "1" then
+    move("x1y3", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "3" then
+    move("x1y3", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "3" then
+    move("x1y3", "down")
+  else
+
+  end
+end
+function clickx2y3()
+  if selected == "clear" then
+    selected = "x2y3"
+    self.editButton({index=(((2+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y3" then
+    selected = "clear"
+    self.editButton({index=(((2+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "2" then
+    move("x2y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "2" then
+    move("x2y3", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "3" then
+    move("x2y3", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "3" then
+    move("x2y3", "down")
+  else
+
+  end
+end
+function clickx3y3()
+  if selected == "clear" then
+    selected = "x3y3"
+    self.editButton({index=(((3+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y3" then
+    selected = "clear"
+    self.editButton({index=(((3+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "3" then
+    move("x3y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "3" then
+    move("x3y3", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "3" then
+    move("x3y3", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "3" then
+    move("x3y3", "down")
+  else
+
+  end
+end
+function clickx4y3()
+  if selected == "clear" then
+    selected = "x4y3"
+    self.editButton({index=(((4+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y3" then
+    selected = "clear"
+    self.editButton({index=(((4+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "4" then
+    move("x4y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "4" then
+    move("x4y3", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "3" then
+    move("x4y3", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "3" then
+    move("x4y3", "down")
+  else
+
+  end
+end
+function clickx5y3()
+  if selected == "clear" then
+    selected = "x5y3"
+    self.editButton({index=(((5+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y3" then
+    selected = "clear"
+    self.editButton({index=(((5+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "5" then
+    move("x5y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "5" then
+    move("x5y3", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "3" then
+    move("x5y3", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "3" then
+    move("x5y3", "down")
+  else
+
+  end
+end
+function clickx5y3()
+  if selected == "clear" then
+    selected = "x5y3"
+    self.editButton({index=(((5+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y3" then
+    selected = "clear"
+    self.editButton({index=(((5+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "5" then
+    move("x5y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "5" then
+    move("x5y3", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "3" then
+    move("x5y3", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "3" then
+    move("x5y3", "down")
+  else
+
+  end
+end
+function clickx6y3()
+  if selected == "clear" then
+    selected = "x6y3"
+    self.editButton({index=(((6+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y3" then
+    selected = "clear"
+    self.editButton({index=(((6+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "6" then
+    move("x6y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "6" then
+    move("x6y3", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "3" then
+    move("x6y3", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "3" then
+    move("x6y3", "down")
+  else
+
+  end
+end
+function clickx7y3()
+  if selected == "clear" then
+    selected = "x7y3"
+    self.editButton({index=(((7+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y3" then
+    selected = "clear"
+    self.editButton({index=(((7+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "7" then
+    move("x7y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "7" then
+    move("x7y3", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "3" then
+    move("x7y3", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "3" then
+    move("x7y3", "down")
+  else
+
+  end
+end
+function clickx8y3()
+  if selected == "clear" then
+    selected = "x8y3"
+    self.editButton({index=(((8+((3-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y3" then
+    selected = "clear"
+    self.editButton({index=(((8+((3-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) > "8" then
+    move("x8y3", "left")
+  elseif  string.sub(selected,4, 4) == "3" and string.sub(selected,2, 2) < "8" then
+    move("x8y3", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "3" then
+    move("x8y3", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "3" then
+    move("x8y3", "down")
+  else
+
+  end
+end
+
+function clickx1y4()
+  if selected == "clear" then
+    selected = "x1y4"
+    self.editButton({index=(((1+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y4" then
+    selected = "clear"
+    self.editButton({index=(((1+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "1" then
+    move("x1y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "1" then
+    move("x1y4", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "4" then
+    move("x1y4", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "4" then
+    move("x1y4", "down")
+  else
+
+  end
+end
+function clickx2y4()
+  if selected == "clear" then
+    selected = "x2y4"
+    self.editButton({index=(((2+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y4" then
+    selected = "clear"
+    self.editButton({index=(((2+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "2" then
+    move("x2y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "2" then
+    move("x2y4", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "4" then
+    move("x2y4", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "4" then
+    move("x2y4", "down")
+  else
+
+  end
+end
+function clickx3y4()
+  if selected == "clear" then
+    selected = "x3y4"
+    self.editButton({index=(((3+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y4" then
+    selected = "clear"
+    self.editButton({index=(((3+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "3" then
+    move("x3y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "3" then
+    move("x3y4", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "4" then
+    move("x3y4", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "4" then
+    move("x3y4", "down")
+  else
+
+  end
+end
+function clickx4y4()
+  if selected == "clear" then
+    selected = "x4y4"
+    self.editButton({index=(((4+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y4" then
+    selected = "clear"
+    self.editButton({index=(((4+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "4" then
+    move("x4y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "4" then
+    move("x4y4", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "4" then
+    move("x4y4", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "4" then
+    move("x4y4", "down")
+  else
+
+  end
+end
+function clickx5y4()
+  if selected == "clear" then
+    selected = "x5y4"
+    self.editButton({index=(((5+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y4" then
+    selected = "clear"
+    self.editButton({index=(((5+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "5" then
+    move("x5y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "5" then
+    move("x5y4", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "4" then
+    move("x5y4", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "4" then
+    move("x5y4", "down")
+  else
+
+  end
+end
+function clickx5y4()
+  if selected == "clear" then
+    selected = "x5y4"
+    self.editButton({index=(((5+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y4" then
+    selected = "clear"
+    self.editButton({index=(((5+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "5" then
+    move("x5y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "5" then
+    move("x5y4", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "4" then
+    move("x5y4", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "4" then
+    move("x5y4", "down")
+  else
+
+  end
+end
+function clickx6y4()
+  if selected == "clear" then
+    selected = "x6y4"
+    self.editButton({index=(((6+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y4" then
+    selected = "clear"
+    self.editButton({index=(((6+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "6" then
+    move("x6y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "6" then
+    move("x6y4", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "4" then
+    move("x6y4", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "4" then
+    move("x6y4", "down")
+  else
+
+  end
+end
+function clickx7y4()
+  if selected == "clear" then
+    selected = "x7y4"
+    self.editButton({index=(((7+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y4" then
+    selected = "clear"
+    self.editButton({index=(((7+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "7" then
+    move("x7y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "7" then
+    move("x7y4", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "4" then
+    move("x7y4", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "4" then
+    move("x7y4", "down")
+  else
+
+  end
+end
+function clickx8y4()
+  if selected == "clear" then
+    selected = "x8y4"
+    self.editButton({index=(((8+((4-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y4" then
+    selected = "clear"
+    self.editButton({index=(((8+((4-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) > "8" then
+    move("x8y4", "left")
+  elseif  string.sub(selected,4, 4) == "4" and string.sub(selected,2, 2) < "8" then
+    move("x8y4", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "4" then
+    move("x8y4", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "4" then
+    move("x8y4", "down")
+  else
+
+  end
+end
+
+function clickx1y5()
+  if selected == "clear" then
+    selected = "x1y5"
+    self.editButton({index=(((1+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y5" then
+    selected = "clear"
+    self.editButton({index=(((1+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "1" then
+    move("x1y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "1" then
+    move("x1y5", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "5" then
+    move("x1y5", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "5" then
+    move("x1y5", "down")
+  else
+
+  end
+end
+function clickx2y5()
+  if selected == "clear" then
+    selected = "x2y5"
+    self.editButton({index=(((2+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y5" then
+    selected = "clear"
+    self.editButton({index=(((2+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "2" then
+    move("x2y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "2" then
+    move("x2y5", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "5" then
+    move("x2y5", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "5" then
+    move("x2y5", "down")
+  else
+
+  end
+end
+function clickx3y5()
+  if selected == "clear" then
+    selected = "x3y5"
+    self.editButton({index=(((3+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y5" then
+    selected = "clear"
+    self.editButton({index=(((3+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "3" then
+    move("x3y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "3" then
+    move("x3y5", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "5" then
+    move("x3y5", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "5" then
+    move("x3y5", "down")
+  else
+
+  end
+end
+function clickx4y5()
+  if selected == "clear" then
+    selected = "x4y5"
+    self.editButton({index=(((4+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y5" then
+    selected = "clear"
+    self.editButton({index=(((4+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "4" then
+    move("x4y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "4" then
+    move("x4y5", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "5" then
+    move("x4y5", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "5" then
+    move("x4y5", "down")
+  else
+
+  end
+end
+function clickx5y5()
+  if selected == "clear" then
+    selected = "x5y5"
+    self.editButton({index=(((5+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y5" then
+    selected = "clear"
+    self.editButton({index=(((5+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "5" then
+    move("x5y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "5" then
+    move("x5y5", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "5" then
+    move("x5y5", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "5" then
+    move("x5y5", "down")
+  else
+
+  end
+end
+function clickx5y5()
+  if selected == "clear" then
+    selected = "x5y5"
+    self.editButton({index=(((5+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y5" then
+    selected = "clear"
+    self.editButton({index=(((5+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "5" then
+    move("x5y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "5" then
+    move("x5y5", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "5" then
+    move("x5y5", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "5" then
+    move("x5y5", "down")
+  else
+
+  end
+end
+function clickx6y5()
+  if selected == "clear" then
+    selected = "x6y5"
+    self.editButton({index=(((6+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y5" then
+    selected = "clear"
+    self.editButton({index=(((6+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "6" then
+    move("x6y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "6" then
+    move("x6y5", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "5" then
+    move("x6y5", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "5" then
+    move("x6y5", "down")
+  else
+
+  end
+end
+function clickx7y5()
+  if selected == "clear" then
+    selected = "x7y5"
+    self.editButton({index=(((7+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y5" then
+    selected = "clear"
+    self.editButton({index=(((7+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "7" then
+    move("x7y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "7" then
+    move("x7y5", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "5" then
+    move("x7y5", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "5" then
+    move("x7y5", "down")
+  else
+
+  end
+end
+function clickx8y5()
+  if selected == "clear" then
+    selected = "x8y5"
+    self.editButton({index=(((8+((5-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y5" then
+    selected = "clear"
+    self.editButton({index=(((8+((5-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) > "8" then
+    move("x8y5", "left")
+  elseif  string.sub(selected,4, 4) == "5" and string.sub(selected,2, 2) < "8" then
+    move("x8y5", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "5" then
+    move("x8y5", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "5" then
+    move("x8y5", "down")
+  else
+
+  end
+end
+
+function clickx1y6()
+  if selected == "clear" then
+    selected = "x1y6"
+    self.editButton({index=(((1+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y6" then
+    selected = "clear"
+    self.editButton({index=(((1+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "1" then
+    move("x1y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "1" then
+    move("x1y6", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "6" then
+    move("x1y6", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "6" then
+    move("x1y6", "down")
+  else
+
+  end
+end
+function clickx2y6()
+  if selected == "clear" then
+    selected = "x2y6"
+    self.editButton({index=(((2+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y6" then
+    selected = "clear"
+    self.editButton({index=(((2+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "2" then
+    move("x2y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "2" then
+    move("x2y6", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "6" then
+    move("x2y6", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "6" then
+    move("x2y6", "down")
+  else
+
+  end
+end
+function clickx3y6()
+  if selected == "clear" then
+    selected = "x3y6"
+    self.editButton({index=(((3+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y6" then
+    selected = "clear"
+    self.editButton({index=(((3+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "3" then
+    move("x3y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "3" then
+    move("x3y6", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "6" then
+    move("x3y6", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "6" then
+    move("x3y6", "down")
+  else
+
+  end
+end
+function clickx4y6()
+  if selected == "clear" then
+    selected = "x4y6"
+    self.editButton({index=(((4+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y6" then
+    selected = "clear"
+    self.editButton({index=(((4+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "4" then
+    move("x4y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "4" then
+    move("x4y6", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "6" then
+    move("x4y6", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "6" then
+    move("x4y6", "down")
+  else
+
+  end
+end
+function clickx5y6()
+  if selected == "clear" then
+    selected = "x5y6"
+    self.editButton({index=(((5+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y6" then
+    selected = "clear"
+    self.editButton({index=(((5+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "5" then
+    move("x5y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "5" then
+    move("x5y6", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "6" then
+    move("x5y6", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "6" then
+    move("x5y6", "down")
+  else
+
+  end
+end
+function clickx5y6()
+  if selected == "clear" then
+    selected = "x5y6"
+    self.editButton({index=(((5+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y6" then
+    selected = "clear"
+    self.editButton({index=(((5+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "5" then
+    move("x5y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "5" then
+    move("x5y6", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "6" then
+    move("x5y6", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "6" then
+    move("x5y6", "down")
+  else
+
+  end
+end
+function clickx6y6()
+  if selected == "clear" then
+    selected = "x6y6"
+    self.editButton({index=(((6+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y6" then
+    selected = "clear"
+    self.editButton({index=(((6+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "6" then
+    move("x6y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "6" then
+    move("x6y6", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "6" then
+    move("x6y6", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "6" then
+    move("x6y6", "down")
+  else
+
+  end
+end
+function clickx7y6()
+  if selected == "clear" then
+    selected = "x7y6"
+    self.editButton({index=(((7+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y6" then
+    selected = "clear"
+    self.editButton({index=(((7+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "7" then
+    move("x7y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "7" then
+    move("x7y6", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "6" then
+    move("x7y6", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "6" then
+    move("x7y6", "down")
+  else
+
+  end
+end
+function clickx8y6()
+  if selected == "clear" then
+    selected = "x8y6"
+    self.editButton({index=(((8+((6-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y6" then
+    selected = "clear"
+    self.editButton({index=(((8+((6-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) > "8" then
+    move("x8y6", "left")
+  elseif  string.sub(selected,4, 4) == "6" and string.sub(selected,2, 2) < "8" then
+    move("x8y6", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "6" then
+    move("x8y6", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "6" then
+    move("x8y6", "down")
+  else
+
+  end
+end
+
+function clickx1y7()
+  if selected == "clear" then
+    selected = "x1y7"
+    self.editButton({index=(((1+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y7" then
+    selected = "clear"
+    self.editButton({index=(((1+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "1" then
+    move("x1y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "1" then
+    move("x1y7", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "7" then
+    move("x1y7", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "7" then
+    move("x1y7", "down")
+  else
+
+  end
+end
+function clickx2y7()
+  if selected == "clear" then
+    selected = "x2y7"
+    self.editButton({index=(((2+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y7" then
+    selected = "clear"
+    self.editButton({index=(((2+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "2" then
+    move("x2y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "2" then
+    move("x2y7", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "7" then
+    move("x2y7", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "7" then
+    move("x2y7", "down")
+  else
+
+  end
+end
+function clickx3y7()
+  if selected == "clear" then
+    selected = "x3y7"
+    self.editButton({index=(((3+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y7" then
+    selected = "clear"
+    self.editButton({index=(((3+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "3" then
+    move("x3y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "3" then
+    move("x3y7", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "7" then
+    move("x3y7", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "7" then
+    move("x3y7", "down")
+  else
+
+  end
+end
+function clickx4y7()
+  if selected == "clear" then
+    selected = "x4y7"
+    self.editButton({index=(((4+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y7" then
+    selected = "clear"
+    self.editButton({index=(((4+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "4" then
+    move("x4y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "4" then
+    move("x4y7", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "7" then
+    move("x4y7", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "7" then
+    move("x4y7", "down")
+  else
+
+  end
+end
+function clickx5y7()
+  if selected == "clear" then
+    selected = "x5y7"
+    self.editButton({index=(((5+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y7" then
+    selected = "clear"
+    self.editButton({index=(((5+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "5" then
+    move("x5y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "5" then
+    move("x5y7", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "7" then
+    move("x5y7", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "7" then
+    move("x5y7", "down")
+  else
+
+  end
+end
+function clickx5y7()
+  if selected == "clear" then
+    selected = "x5y7"
+    self.editButton({index=(((5+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y7" then
+    selected = "clear"
+    self.editButton({index=(((5+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "5" then
+    move("x5y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "5" then
+    move("x5y7", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "7" then
+    move("x5y7", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "7" then
+    move("x5y7", "down")
+  else
+
+  end
+end
+function clickx6y7()
+  if selected == "clear" then
+    selected = "x6y7"
+    self.editButton({index=(((6+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y7" then
+    selected = "clear"
+    self.editButton({index=(((6+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "6" then
+    move("x6y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "6" then
+    move("x6y7", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "7" then
+    move("x6y7", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "7" then
+    move("x6y7", "down")
+  else
+
+  end
+end
+function clickx7y7()
+  if selected == "clear" then
+    selected = "x7y7"
+    self.editButton({index=(((7+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y7" then
+    selected = "clear"
+    self.editButton({index=(((7+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "7" then
+    move("x7y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "7" then
+    move("x7y7", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "7" then
+    move("x7y7", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "7" then
+    move("x7y7", "down")
+  else
+
+  end
+end
+function clickx8y7()
+  if selected == "clear" then
+    selected = "x8y7"
+    self.editButton({index=(((8+((7-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y7" then
+    selected = "clear"
+    self.editButton({index=(((8+((7-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) > "8" then
+    move("x8y7", "left")
+  elseif  string.sub(selected,4, 4) == "7" and string.sub(selected,2, 2) < "8" then
+    move("x8y7", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "7" then
+    move("x8y7", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "7" then
+    move("x8y7", "down")
+  else
+
+  end
+end
+
+function clickx1y8()
+  if selected == "clear" then
+    selected = "x1y8"
+    self.editButton({index=(((1+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x1y8" then
+    selected = "clear"
+    self.editButton({index=(((1+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "1" then
+    move("x1y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "1" then
+    move("x1y8", "right" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) > "8" then
+    move("x1y8", "up" )
+  elseif string.sub(selected,2, 2) == "1" and string.sub(selected,4, 4) < "8" then
+    move("x1y8", "down")
+  else
+
+  end
+end
+function clickx2y8()
+  if selected == "clear" then
+    selected = "x2y8"
+    self.editButton({index=(((2+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x2y8" then
+    selected = "clear"
+    self.editButton({index=(((2+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "2" then
+    move("x2y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "2" then
+    move("x2y8", "right" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) > "8" then
+    move("x2y8", "up" )
+  elseif string.sub(selected,2, 2) == "2" and string.sub(selected,4, 4) < "8" then
+    move("x2y8", "down")
+  else
+
+  end
+end
+function clickx3y8()
+  if selected == "clear" then
+    selected = "x3y8"
+    self.editButton({index=(((3+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x3y8" then
+    selected = "clear"
+    self.editButton({index=(((3+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "3" then
+    move("x3y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "3" then
+    move("x3y8", "right" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) > "8" then
+    move("x3y8", "up" )
+  elseif string.sub(selected,2, 2) == "3" and string.sub(selected,4, 4) < "8" then
+    move("x3y8", "down")
+  else
+
+  end
+end
+function clickx4y8()
+  if selected == "clear" then
+    selected = "x4y8"
+    self.editButton({index=(((4+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x4y8" then
+    selected = "clear"
+    self.editButton({index=(((4+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "4" then
+    move("x4y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "4" then
+    move("x4y8", "right" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) > "8" then
+    move("x4y8", "up" )
+  elseif string.sub(selected,2, 2) == "4" and string.sub(selected,4, 4) < "8" then
+    move("x4y8", "down")
+  else
+
+  end
+end
+function clickx5y8()
+  if selected == "clear" then
+    selected = "x5y8"
+    self.editButton({index=(((5+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y8" then
+    selected = "clear"
+    self.editButton({index=(((5+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "5" then
+    move("x5y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "5" then
+    move("x5y8", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "8" then
+    move("x5y8", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "8" then
+    move("x5y8", "down")
+  else
+
+  end
+end
+function clickx5y8()
+  if selected == "clear" then
+    selected = "x5y8"
+    self.editButton({index=(((5+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x5y8" then
+    selected = "clear"
+    self.editButton({index=(((5+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "5" then
+    move("x5y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "5" then
+    move("x5y8", "right" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) > "8" then
+    move("x5y8", "up" )
+  elseif string.sub(selected,2, 2) == "5" and string.sub(selected,4, 4) < "8" then
+    move("x5y8", "down")
+  else
+
+  end
+end
+function clickx6y8()
+  if selected == "clear" then
+    selected = "x6y8"
+    self.editButton({index=(((6+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x6y8" then
+    selected = "clear"
+    self.editButton({index=(((6+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "6" then
+    move("x6y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "6" then
+    move("x6y8", "right" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) > "8" then
+    move("x6y8", "up" )
+  elseif string.sub(selected,2, 2) == "6" and string.sub(selected,4, 4) < "8" then
+    move("x6y8", "down")
+  else
+
+  end
+end
+function clickx7y8()
+  if selected == "clear" then
+    selected = "x7y8"
+    self.editButton({index=(((7+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x7y8" then
+    selected = "clear"
+    self.editButton({index=(((7+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "7" then
+    move("x7y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "7" then
+    move("x7y8", "right" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) > "8" then
+    move("x7y8", "up" )
+  elseif string.sub(selected,2, 2) == "7" and string.sub(selected,4, 4) < "8" then
+    move("x7y8", "down")
+  else
+
+  end
+end
+function clickx8y8()
+  if selected == "clear" then
+    selected = "x8y8"
+    self.editButton({index=(((8+((8-1)*8))-1)), color={1,1,1,.6}, tooltip = "unselect?"})
+
+  elseif selected == "x8y8" then
+    selected = "clear"
+    self.editButton({index=(((8+((8-1)*8))-1)), color={1,1,1,0}, tooltip = "select"})
+  elseif string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) > "8" then
+    move("x8y8", "left")
+  elseif  string.sub(selected,4, 4) == "8" and string.sub(selected,2, 2) < "8" then
+    move("x8y8", "right" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) > "8" then
+    move("x8y8", "up" )
+  elseif string.sub(selected,2, 2) == "8" and string.sub(selected,4, 4) < "8" then
+    move("x8y8", "down")
+  else
+
+  end
+end
